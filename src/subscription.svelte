@@ -2,7 +2,7 @@
     export let name;
     export let price;
     export let subscriptionPlan;
-    export let description;
+    export let description = "";
 </script>
 
 <style>
@@ -29,10 +29,12 @@
 
         background-color: rgb(1, 91, 97);
         
-        margin: 1em;
+        margin-left: 3rem;
+        margin-top: 1em;
         padding: 1em;
         padding-bottom: 0.3em;
 
+        width: 90%;
         border-style: solid;
         border-color: rgb(78, 35, 92);
         border-width: 4px;
@@ -47,21 +49,22 @@
         padding: 1;
         background-color: aqua;
         flex: 0.8;
+        margin-right: 1rem;
     }
 
     .increase {
         animation-name: dilate;
         animation-duration: 1s;
     }
-
+/* 
     @keyframes dilate{
         from {
             width: 0%;
         }
         to {
-            width: 100%;
+            width: 90%;
         }
-    }
+    } */
     
     h1{
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -72,6 +75,12 @@
     img {
         align-self: center;
         margin: 0;
+    }
+
+    .actions-container {
+        width: 100px;
+
+        background-color: blue;
     }
 </style>
 
@@ -91,5 +100,22 @@
                 <p>Description: {description}</p>
             {/if}
         {/if}
+    </div>
+
+    <div class="actions-container">
+        <i class="trash3"></i>
+        <button>
+            HELLO
+        </button>
+
+        
+        <div class="btn btn-primary dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+
     </div>
 </div>

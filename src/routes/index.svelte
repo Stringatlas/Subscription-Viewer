@@ -1,11 +1,10 @@
 <script>
     import Navbar from "../navbar.svelte";
+    import Actions from "../subscriptionactions.svelte"
 </script>
 
 <Navbar />
-
-<img src="defaultimage.png" alt=" ">
-
+<Actions />
 <style>
     .flexer {
         display: flex;
@@ -25,4 +24,4 @@
     <div class="element">b</div>
     <div class="element">c</div>
 </div>
-<button class="btn-danger">dont click</button>
+<button class="btn btn-danger">dont click</button>

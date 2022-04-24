@@ -1,7 +1,8 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark" style="width:auto !important">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
-        <img src="logo.png" alt=" " height="40">
+        <img src="logo.png" alt=" " height="40"
+        style="margin-left: 0.5rem;">
         Subscription Viewer
       </a>
 
