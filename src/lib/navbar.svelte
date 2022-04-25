@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark" style="width:auto !important">
+<nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
         <img src="/logo.png" alt=" " height="40"

@@ -1,12 +1,15 @@
 <script>
-    import Navbar from "../../navbar.svelte";
+    import Navbar from "$lib/navbar.svelte";
+    import Success from "$lib/successmodal.svelte";
 
     function deleteAllLocalStorage(){
         localStorage.clear();
+
     }
 </script>
 
 <Navbar />
+<Success class="confirmModal" />
 
 <head>
     <meta charset="utf-8" />
@@ -36,99 +39,98 @@
         src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <style>
-        body {
-            font-family: "Varela Round", sans-serif;
-        }
-        .modal-confirm {
-            color: #636363;
-            width: 400px;
-        }
-        .modal-confirm .modal-content {
-            padding: 20px;
-            border-radius: 5px;
-            border: none;
-            text-align: center;
-            font-size: 14px;
-        }
-        .modal-confirm .modal-header {
-            border-bottom: none;
-            position: relative;
-        }
-        .modal-confirm h4 {
-            text-align: center;
-            font-size: 26px;
-            margin: 30px 0 -10px;
-        }
-        .modal-confirm .close {
-            position: absolute;
-            top: -5px;
-            right: -2px;
-        }
-        .modal-confirm .modal-body {
-            color: #999;
-        }
-        .modal-confirm .modal-footer {
-            border: none;
-            text-align: center;
-            border-radius: 5px;
-            font-size: 13px;
-            padding: 10px 15px 25px;
-        }
-        .modal-confirm .modal-footer a {
-            color: #999;
-        }
-        .modal-confirm .icon-box {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto;
-            border-radius: 50%;
-            z-index: 9;
-            text-align: center;
-            border: 3px solid #f15e5e;
-        }
-        .modal-confirm .icon-box i {
-            color: #f15e5e;
-            font-size: 46px;
-            display: inline-block;
-            margin-top: 13px;
-        }
-        .modal-confirm .btn,
-        .modal-confirm .btn:active {
-            color: #fff;
-            border-radius: 4px;
-            background: #60c7c1;
-            text-decoration: none;
-            transition: all 0.4s;
-            line-height: normal;
-            min-width: 120px;
-            border: none;
-            min-height: 40px;
-            border-radius: 3px;
-            margin: 0 5px;
-        }
-        .modal-confirm .btn-secondary {
-            background: #c1c1c1;
-        }
-        .modal-confirm .btn-secondary:hover,
-        .modal-confirm .btn-secondary:focus {
-            background: #a8a8a8;
-        }
-        .modal-confirm .btn-danger {
-            background: #f15e5e;
-        }
-        .modal-confirm .btn-danger:hover,
-        .modal-confirm .btn-danger:focus {
-            background: #ee3535;
-        }
-        .trigger-btn {
-            display: inline-block;
-            margin: 100px auto;
-        }
-    </style>
 </head>
 
 <style>
+    body {
+        font-family: "Varela Round", sans-serif;
+    }
+    .modal-confirm {
+        color: #636363;
+        width: 400px;
+    }
+    .modal-confirm .modal-content {
+        padding: 20px;
+        border-radius: 5px;
+        border: none;
+        text-align: center;
+        font-size: 14px;
+    }
+    .modal-confirm .modal-header {
+        border-bottom: none;
+        position: relative;
+    }
+    .modal-confirm h4 {
+        text-align: center;
+        font-size: 26px;
+        margin: 30px 0 -10px;
+    }
+    .modal-confirm .close {
+        position: absolute;
+        top: -5px;
+        right: -2px;
+    }
+    .modal-confirm .modal-body {
+        color: #999;
+    }
+    .modal-confirm .modal-footer {
+        border: none;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 13px;
+        padding: 10px 15px 25px;
+    }
+    .modal-confirm .modal-footer a {
+        color: #999;
+    }
+    .modal-confirm .icon-box {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        border-radius: 50%;
+        z-index: 9;
+        text-align: center;
+        border: 3px solid #f15e5e;
+    }
+    .modal-confirm .icon-box i {
+        color: #f15e5e;
+        font-size: 46px;
+        display: inline-block;
+        margin-top: 13px;
+    }
+    .modal-confirm .btn,
+    .modal-confirm .btn:active {
+        color: #fff;
+        border-radius: 4px;
+        background: #60c7c1;
+        text-decoration: none;
+        transition: all 0.4s;
+        line-height: normal;
+        min-width: 120px;
+        border: none;
+        min-height: 40px;
+        border-radius: 3px;
+        margin: 0 5px;
+    }
+    .modal-confirm .btn-secondary {
+        background: #c1c1c1;
+    }
+    .modal-confirm .btn-secondary:hover,
+    .modal-confirm .btn-secondary:focus {
+        background: #a8a8a8;
+    }
+    .modal-confirm .btn-danger {
+        background: #f15e5e;
+    }
+    .modal-confirm .btn-danger:hover,
+    .modal-confirm .btn-danger:focus {
+        background: #ee3535;
+    }
+    .trigger-btn {
+        display: inline-block;
+        margin: 100px auto;
+    }
+
     .delete-info {
         font-size: medium;
         outline-color: red;
@@ -140,15 +142,16 @@
         margin-top: 1em;
     }
 </style>
+
 <body>
 
     <div class="text-center">
         <h3 class="header-that-says-data-in-localstorage">All data is stored in Localstorage</h3>
-        <button class="btn btn-danger delete-info" data-toggle="modal" href="#myModal">Delete all info</button>
+        <button class="btn btn-danger delete-info" data-toggle="modal" href="#deleteModal">Delete all info</button>
     </div>
 
     <!-- Modal HTML -->
-    <div id="myModal" class="modal fade">
+    <div id="deleteModal" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
                 <div class="modal-header flex-column">
@@ -165,7 +168,7 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        Do you really want to delete these records? This process
+                        Do you really want to delete all subscription data? This process
                         cannot be undone.
                     </p>
                 </div>
@@ -175,9 +178,10 @@
                         class="btn btn-secondary"
                         data-dismiss="modal">Cancel</button
                     >
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" on:click="{deleteAllLocalStorage()}">Delete</button>
+                    <button type="button" href="#confirmModal" data-toggle="modal" class="btn btn-danger" data-dismiss="modal" on:click="{deleteAllLocalStorage()}">Delete</button>
                 </div>
             </div>
         </div>
     </div>
 </body>
+        

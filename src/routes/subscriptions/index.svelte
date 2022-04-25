@@ -1,6 +1,6 @@
 <script>
-    import Navbar from "../../navbar.svelte";
-    import Subscription from "../../subscription.svelte"
+    import Navbar from "$lib/navbar.svelte";
+    import Subscription from "$lib/subscription.svelte";
 </script>
 <Navbar />
 
