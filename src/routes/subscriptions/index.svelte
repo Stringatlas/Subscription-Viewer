@@ -1,8 +1,8 @@
 <script>
-    import Navbar from "$lib/navbar.svelte";
     import Subscription from "$lib/subscription.svelte";
+    let price = 9.99;
+    $: displayPrice = price.toFixed(2);
 </script>
-<Navbar />
 
 <style>
     .subscriptions {

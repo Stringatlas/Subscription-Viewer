@@ -32,16 +32,12 @@
         font-size: 26px;
         margin: 30px 0 -15px;
     }
-    .modal-confirm .form-control,
+
     .modal-confirm .btn {
         min-height: 40px;
         border-radius: 3px;
     }
-    .modal-confirm .close {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-    }
+
     .modal-confirm .modal-footer {
         border: none;
         text-align: center;
@@ -85,10 +81,6 @@
     .modal-confirm .btn:focus {
         background: #6fb32b;
         outline: none;
-    }
-    .trigger-btn {
-        display: inline-block;
-        margin: 100px auto;
     }
 </style>
 

@@ -1,5 +1,4 @@
 <script>
-    import Navbar from "$lib/navbar.svelte";
     import Success from "$lib/successmodal.svelte";
 
     function deleteAllLocalStorage(){
@@ -8,7 +7,6 @@
     }
 </script>
 
-<Navbar />
 <Success class="confirmModal" />
 
 <head>
@@ -80,9 +78,6 @@
         font-size: 13px;
         padding: 10px 15px 25px;
     }
-    .modal-confirm .modal-footer a {
-        color: #999;
-    }
     .modal-confirm .icon-box {
         width: 80px;
         height: 80px;
@@ -126,10 +121,7 @@
     .modal-confirm .btn-danger:focus {
         background: #ee3535;
     }
-    .trigger-btn {
-        display: inline-block;
-        margin: 100px auto;
-    }
+
 
     .delete-info {
         font-size: medium;
