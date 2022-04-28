@@ -2,8 +2,17 @@
     import Navbar from "$lib/navbar.svelte";
 </script>
 
-<Navbar />
 
-<main>
-    <slot></slot>
-</main>
+<style>
+    body {
+        background-color: rgb(142, 154, 164);
+    }
+</style>
+
+<body>
+    <Navbar />
+    <main>
+        <slot></slot>
+    </main>
+</body>
+

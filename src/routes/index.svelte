@@ -4,24 +4,42 @@
 
 <Actions />
 <style>
+    :root {
+        --transition-time: 0.5s;
+    }
+
     .flexer {
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        align-items: flex-end;
+
+        flex: 1;
     }
 
     .element {
         width: 100px;
         height: 100px;
-        background-color: aqua;
-    }
-    .btn-circle {
-        width: 30px;
-        height: 30px;
-        padding: 6px 0px;
-        border-radius: 15px;
-        font-size: 20px;
+        border-style: solid;
+        margin: 2rem;
+        font-size: xx-large;
         text-align: center;
+        
+        box-shadow: 5px 5px 2px 1px rgba(76, 76, 83, 0.2);
+
+        background-color: aqua;
+        transform: scale(1, 1);
+        transition: background-color var(--transition-time), transform var(--transition-time);
+    }
+
+
+    .element:hover {
+
+        background-color: rgb(11, 112, 255);
+        transform: scale(1.1, 1.1);
+        box-shadow: 5px 5px 2px 1px rgba(76, 76, 83, 0.28);
+        transition: background-color var(--transition-time), transform var(--transition-time);
+
+        box-shadow: inset;
     }
 </style>
 
@@ -31,9 +49,9 @@
     <div class="element">c</div>
 </div>
 
-<button class="btn btn-primary btn-circle">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-      </svg>
-</button>
+
+
+
+
+
 <button class="btn btn-danger">dont click</button>
