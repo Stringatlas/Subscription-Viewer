@@ -8,6 +8,10 @@
     $scale-up: 1.05;
     $element-margin-sides: 4rem;
 
+    .resize {
+        
+    }
+
     .flexer {
         display: flex;
         flex-direction: column;
@@ -19,34 +23,41 @@
     .element {
         width: calc(100% - $element-margin-sides * 2);
         height: fit-content;
+        max-height: 500px;
         border-style: solid;
+        border-width: 0.15em;
+        border-color: rgba(181, 171, 123, 71);
+        border-radius: 2rem;
+
         margin: 0.5rem;
         margin-left: $element-margin-sides;
         margin-right: $element-margin-sides;
 
-        font-size: xx-large;
+        font-size: 4vw;
         text-align: center;
         
-        box-shadow: 5px 5px 2px 1px rgba(76, 76, 83, 0.2);
+        box-shadow: 10px 10px 2px 1px rgba(76, 76, 83, 0.2);
 
-        background-color: aqua;
+        background-color: rgba(157, 157, 161, 63);
         transform: scale(1, 1);
-        transition: background-color $transition-time, transform $transition-time;
+        transition: background-color $transition-time, transform $transition-time, border-color $transition-time;
     }
 
 
     .element:hover {
-        background-color: rgb(11, 112, 255);
+        background-color: rgba(125, 125, 161, 63);
         transform: scale($scale-up, $scale-up) translate(0px, -0.5rem);
 
+        border-color: rgba(105, 102, 92, 41);
         box-shadow: 5px 5px 2px 1px rgba(76, 76, 83, 0.28);
-        transition: background-color $transition-time, transform $transition-time;
-
-        box-shadow: inset;
+        transition: background-color $transition-time, transform $transition-time, border-color $transition-time;
     }
 
     img {
-        margin: 1rem;
+        min-width: 30%;
+        max-width: 100px;
+        height: auto;
+        margin: 2%;
     }
 
     .element-flex {
@@ -56,24 +67,33 @@
     }
 
     .highlight {
-        margin: 1rem;
         background-color: red;
     }
 
     .description {
-        align-self: flex-start;
+        margin: 1%;
+        width: fit-content;
+        align-self: flex-start !important;
+        border: solid;
+    }
+
+    h1 {
+        font-size: 5vw;
+    }
+    p {
+        font-size: 1.5vw;
     }
 </style>
 
 <div class="flexer">
     <div class="element element-flex">
-        <img src="/default.jpg" alt="">
-        <div class="highlight">
+        <img src="/netflix.png" alt="subscription icon">
+        <div class="resize highlight">
             <h1>Netflix</h1>
             <h1>$9.99/month</h1>
         </div>
-        <div class="highlight description">
-            <p>Description: </p>
+        <div class="resize highlight description">
+            <p><b>Description:</b> blah labtlawe paweothawioe hpaweoth awoe thawetophaweoit hawep oahw towepto iwpoeiwheqo thweqio thweqoit hiweqht iewoqh twoqhp toiweqth </p>
         </div>
     </div>
     <div class="element">b</div>
