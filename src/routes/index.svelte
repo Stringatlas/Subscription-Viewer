@@ -5,8 +5,8 @@
 <Actions />
 <style lang=scss>
     $transition-time: 0.5s;
-    $scale-up: 1.05;
-    $element-margin-sides: 4rem;
+    $scale-up: 1.025;
+    $element-margin-sides: 2.2rem;
     $shadow-color: rgba(76, 76, 83, 0.2);
     $element-bg-color: rgba(157, 157, 161, 63);
     $element-border-color: rgba(181, 171, 123, 71);
@@ -96,14 +96,4 @@
             <p><b>Description:</b> blah labtlawe paweothawioe hpaweoth awoe thawetophaweoit hawep oahw towepto iwpoeiwheqo thweqio thweqoit hiweqht iewoqh twoqhp toiweqth </p>
         </div>
     </div>
-    <div class="element">b</div>
-    <div class="element">c</div>
-    <div class="element">a</div>
-    <div class="element">b</div>
-    <div class="element">c</div>
-    <div class="element">a</div>
-    <div class="element">b</div>
-    <div class="element">c</div>
 </div>
-
-<button class="btn btn-danger">dont click</button>

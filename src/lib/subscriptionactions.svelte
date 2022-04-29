@@ -1,11 +1,8 @@
 
 <script>
-  let susbscriptionType = "Month";
-  
-  function changeSubscriptionType(type){
-    susbscriptionType = type;
-    console.log("changed subscription to type " + type)
-  }
+  let subscriptionType = "Month";
+
+  import BillingDropDown from "$lib/changeBillingDropdown.svelte";
   
 </script>
 <style>
@@ -48,17 +45,7 @@
 </style>
 
 <div class="actions-container highlight">
-  <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      {susbscriptionType}
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <button class="dropdown-item" href="#" on:click={() => changeSubscriptionType('Year')}>Year</button>
-      <button class="dropdown-item" href="#" on:click={() => changeSubscriptionType('Month')}>Month</button>
-      <button class="dropdown-item" href="#" on:click={() => changeSubscriptionType('Week')}>Week</button>
-      <button class="dropdown-item" href="#" on:click={() => changeSubscriptionType('Day')}>Day</button>
-    </ul>
-  </div>
+  <BillingDropDown subscriptionType={subscriptionType} />
 
   <button class="transparent edit">
     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
