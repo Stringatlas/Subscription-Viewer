@@ -33,9 +33,7 @@
     <div class="row subscriptions">
         <Subscription name={"Netflix"} price="$9.99" subscriptionPlan="month"/>
         <Subscription name={"Netflix"} price="$9.99" subscriptionPlan="month"/>
-        <Subscription name={"Netflix"} price="$9.99" subscriptionPlan="month" 
-        description="Hello this is a subscription"
-        />
+        <Subscription name={"Netflix"} price="$9.99" subscriptionPlan="month" description="Hello this is a subscription"/>
     </div>
 </body>
 
