@@ -7,10 +7,11 @@
     $transition-time: 0.5s;
     $scale-up: 1.05;
     $element-margin-sides: 4rem;
-
-    .resize {
-        
-    }
+    $shadow-color: rgba(76, 76, 83, 0.2);
+    $element-bg-color: rgba(157, 157, 161, 63);
+    $element-border-color: rgba(181, 171, 123, 71);
+    $highlighted-element-border-color: rgba(105, 102, 92, 41);
+    $highlighted-element-bg-color: rgba(125, 125, 161, 63);
 
     .flexer {
         display: flex;
@@ -26,7 +27,7 @@
         max-height: 500px;
         border-style: solid;
         border-width: 0.15em;
-        border-color: rgba(181, 171, 123, 71);
+        border-color: $element-border-color;
         border-radius: 2rem;
 
         margin: 0.5rem;
@@ -36,28 +37,29 @@
         font-size: 4vw;
         text-align: center;
         
-        box-shadow: 10px 10px 2px 1px rgba(76, 76, 83, 0.2);
+        box-shadow: 10px 10px 2px 1px $shadow-color;
 
-        background-color: rgba(157, 157, 161, 63);
+        background-color: $element-bg-color;
         transform: scale(1, 1);
         transition: background-color $transition-time, transform $transition-time, border-color $transition-time;
     }
 
 
     .element:hover {
-        background-color: rgba(125, 125, 161, 63);
+        background-color: $highlighted-element-bg-color;
         transform: scale($scale-up, $scale-up) translate(0px, -0.5rem);
 
-        border-color: rgba(105, 102, 92, 41);
-        box-shadow: 5px 5px 2px 1px rgba(76, 76, 83, 0.28);
+        border-color: $highlighted-element-border-color;
         transition: background-color $transition-time, transform $transition-time, border-color $transition-time;
     }
 
     img {
+        font-size: 4vw;
         min-width: 30%;
         max-width: 100px;
         height: auto;
         margin: 2%;
+        border-radius: 2rem;
     }
 
     .element-flex {
@@ -67,14 +69,12 @@
     }
 
     .highlight {
-        background-color: red;
+        background-color: none;
     }
 
     .description {
         margin: 1%;
         width: fit-content;
-        align-self: flex-start !important;
-        border: solid;
     }
 
     h1 {
