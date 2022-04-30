@@ -60,12 +60,15 @@
         transition: background-color $transition-time, transform $transition-time, border-color $transition-time;
     }
 
+    $img-margin: 5%;
+
     img {
         font-size: 4vw;
-        min-width: 30%;
-        max-width: 100px;
-        height: auto;
-        margin: 2%;
+        width:100%;
+        height: calc(100% - $img-margin);
+        object-fit: contain;
+
+        margin: $img-margin;
         border-radius: 2rem;
     }
 
@@ -94,7 +97,10 @@
 
 <div class="flexer">
     <div class="element element-flex">
-        <img src="/default.jpg" alt="subscription icon">
+        <div>
+            <img src="/default.jpg" alt="subscription icon">
+        </div>
+
         <div class="resize highlight">
             <h1>{name}</h1>
             <h1>${price}/{subscriptionBilling}</h1>
