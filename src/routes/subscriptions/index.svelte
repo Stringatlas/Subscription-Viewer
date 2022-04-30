@@ -6,7 +6,7 @@
     $: displayPrice = price.toFixed(2);
     let totalCost;
 
-    subscription = {"name": "Amazon Prime"}
+    // subscription = {"name": "Amazon Prime"}
 </script>
 
 <style>
@@ -61,5 +61,4 @@
         <Subscription name={"Netflix"} price="$9.99" subscriptionBilling="month" description="Hello this is a subscription"/>
     </div>
 </body>
-
 

@@ -3,8 +3,7 @@
 </script>
 
 <Actions />
-<h1 class="tw-text-center tw-bg-slate-400">hello</h1>
-<p>abc</p>
+
 <style lang=scss>
     $transition-time: 0.5s;
     $scale-up: 1.025;
