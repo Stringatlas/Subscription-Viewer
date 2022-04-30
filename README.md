@@ -1,7 +1,7 @@
 # Subscription-Viewer
 View your subscriptions to manage your money, and quickly find how much you are paying.
 
-
+Made with Svelte, Bootstrap, Sass, Tailwind
 ## Building
 
 To create a production version of your app:
