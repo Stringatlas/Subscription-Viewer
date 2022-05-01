@@ -49,10 +49,9 @@
         transition: background-color $transition-time, transform $transition-time, border-color $transition-time;
     }
     $img-margin: 5%;
+
     img {
         font-size: 4vw;
-        width:100%;
-        height: calc(100% - $img-margin);
         object-fit: contain;
         margin: $img-margin;
         border-radius: $border-radius;
@@ -64,10 +63,11 @@
         justify-content: flex-start;
     }
     .highlight {
-        background-color: red;
+        // background-color: red;
     }
     .description {
         margin: 1%;
+        align-self: center;
     }
     h1 {
         font-size: 5vw;
@@ -95,7 +95,7 @@
 
     <div class="resize highlight description">
         {#if description != ""}
-            <p><b>Description:</b>{description}</p>
+            <p><b>Description: </b>{description}</p>
         {/if}
     </div>
 </div>

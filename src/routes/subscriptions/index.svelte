@@ -4,8 +4,9 @@
 
     let price = 9.99;
     $: displayPrice = price.toFixed(2);
-    let totalCost;
+    let totalCost = 0;
 
+    let description="Netflix is a subscription-based streaming service that allows our members to watch TV shows and movies without commercials on an internet-connected device. You can also download TV shows and movies to your iOS, Android, or Windows 10 device and watch without an internet connection."
     // subscription = {"name": "Amazon Prime"}
 </script>
 
@@ -22,10 +23,6 @@
         background-color: rgb(142, 154, 164);
     }
 
-    .subscriptions {
-        flex-direction: column;
-    }
-
     .add-subscription-btn {
         background-color: rgb(41, 75, 208);
         border-radius: 50%;
@@ -39,25 +36,31 @@
 
     .topBar {
         margin-top: 10px;
-        margin-left: 1.1rem;
-        margin-right: 1.1rem;
+        margin-left: 1%;
+        margin-right: 1%;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
     }
 
-    .topBarElement {
-        /* background-color: red; */
-        display: inline-flex;
+    .flex-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+
     }
+
 </style>
 
 <div class="topBar">
-    <h1 class="topBarElement">Total cost: ${totalCost}</h1>
-    <BillingDropDown class="topBarElement"/>
+    <div class="flex-row">
+        <h1 style="margin:0.5em">Total cost: ${totalCost}</h1>
+        <BillingDropDown class="billing-dropdown" style="margin:10px"/>
+    </div>
     
-    <svg class="topBarElement add-subscription-btn bi bi-plus" xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" viewBox="0 0 16 16">
+    <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" height="12.5vh" fill="currentColor" viewBox="0 0 16 16">
         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
     </svg>
 </div>
@@ -67,7 +70,7 @@
     <div class="flexer">
         <Subscription name={"Amazon Prime"} price="14.99" subscriptionBilling="month" image="/prime.png"/>
         <Subscription name={"Costco Member"} price="60" subscriptionBilling="year" image="/costco.png"/>
-        <Subscription name={"Netflix"} price="9.99" subscriptionBilling="month" description="Hello this is a subscription" image="/netflix.png"/>
+        <Subscription name={"Netflix"} price="9.99" subscriptionBilling="month" description="{description}" image="/netflix.png"/>
     </div>
 </body>
 
