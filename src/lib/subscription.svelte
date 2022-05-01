@@ -52,6 +52,7 @@
 
     img {
         font-size: 4vw;
+        width:100%;
         object-fit: contain;
         margin: $img-margin;
         border-radius: $border-radius;
@@ -79,7 +80,7 @@
         flex-shrink: 1;
     }
     .subscription-name {
-        margin-left: 6%;
+        margin-left: 3%;
     }
 </style>
 
@@ -88,7 +89,7 @@
         <img src="{image}" alt="subscription icon">
     </div>
 
-    <div class="subscription-name resize highlight">
+    <div class="text-center subscription-name resize highlight">
         <h1>{name}</h1>
         <h1>${price}/{subscriptionBilling}</h1>
     </div>
