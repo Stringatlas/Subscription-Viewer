@@ -51,7 +51,9 @@
         justify-content: flex-start;
 
     }
-
+    h1 {
+        font-size: 6vw;
+    }
 </style>
 
 <div class="topBar">

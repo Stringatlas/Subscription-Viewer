@@ -1,5 +1,8 @@
 <script>
   export let subscriptionType = "Month";
+  export let width;
+  export let height;
+  export let fontsize;
 
   function changeSubscriptionType(type){
     subscriptionType = type;
@@ -7,12 +10,10 @@
   }
 </script>
 
-<style>
 
-</style>
 
 <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+  <button class="btn btn-primary dropdown-toggle" style="font-size: {fontsize}" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
     {subscriptionType}
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
