@@ -8,12 +8,13 @@
     subscriptionType = type;
     console.log("changed subscription to type " + type)
   }
+  
 </script>
 
 
 
 <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" style="font-size: {fontsize}" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+  <button class="btn btn-primary dropdown-toggle" style="font-size: {fontsize}; width:{width}; height:{height};" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
     {subscriptionType}
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

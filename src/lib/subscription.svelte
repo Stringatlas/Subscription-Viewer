@@ -64,7 +64,7 @@
         justify-content: flex-start;
     }
     .highlight {
-        // background-color: red;
+        background-color: none;
     }
     .description {
         margin: 1%;
