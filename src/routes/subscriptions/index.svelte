@@ -10,9 +10,18 @@
 </script>
 
 <style>
+    .flexer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        flex: 1;
+    }
+
     body {
         background-color: rgb(142, 154, 164);
     }
+
     .subscriptions {
         flex-direction: column;
     }
@@ -44,18 +53,18 @@
     }
 </style>
 
-<!-- <div class="topBar">
+<div class="topBar">
     <h1 class="topBarElement">Total cost: ${totalCost}</h1>
     <BillingDropDown class="topBarElement"/>
     
     <svg class="topBarElement add-subscription-btn bi bi-plus" xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" viewBox="0 0 16 16">
         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
     </svg>
-</div> -->
+</div>
 
 
 <body>
-    <div class="row subscriptions">
+    <div class="flexer">
         <Subscription name={"Amazon Prime"} price="14.99" subscriptionBilling="month" image="/prime.png"/>
         <Subscription name={"Costco Member"} price="60" subscriptionBilling="year" image="/costco.png"/>
         <Subscription name={"Netflix"} price="9.99" subscriptionBilling="month" description="Hello this is a subscription" image="/netflix.png"/>
