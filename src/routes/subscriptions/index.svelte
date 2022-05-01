@@ -10,7 +10,7 @@
     // subscription = {"name": "Amazon Prime"}
 </script>
 
-<style>
+<style lang=scss>
     .flexer {
         display: flex;
         flex-direction: column;
@@ -23,15 +23,28 @@
         background-color: rgb(142, 154, 164);
     }
 
+    $add-subscription-transition-time: 0.2s;
+
     .add-subscription-btn {
-        background-color: rgb(41, 75, 208);
+        background-color: rgba($color: #8A5E44, $alpha: 1);
         border-radius: 50%;
         text-align: center;
-        color: rgb(218, 213, 198);
+        color: #beb0a8;
+        transition: background-color $add-subscription-transition-time;
+
+        border-style: solid;
+        border-color: #beb0a8;
     }
 
     .add-subscription-btn:hover {
-        background-color: rgb(23, 51, 162);
+        background-color: rgba($color: #BA7C59, $alpha: 1);
+        transition: background-color $add-subscription-transition-time;
+    }
+
+    .add-subscription-btn:focus {
+        outline-style: solid;
+        border-style: solid;
+        border-color: #beb0a8;
     }
 
     .topBar {
@@ -62,7 +75,7 @@
         <BillingDropDown class="billing-dropdown" style="margin:10px"/>
     </div>
     
-    <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" height="12.5vh" width="12.5vh" fill="currentColor" viewBox="0 0 16 16">
+    <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" height="12.5vmin" width="12.5vmin" fill="currentColor" viewBox="0 0 16 16">
         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
     </svg>
 </div>
