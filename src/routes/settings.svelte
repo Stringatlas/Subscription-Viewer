@@ -7,27 +7,49 @@
         "€ Euro",
         "¥ Yuan/Yen",
         "₹ Rupee"
-    ]
+    ];
 
-    function changeCurrency(){
+    function changeCurrency(change_currency){
+        currency = change_currency;
+    }
+
+    function createDropDownOptions() {
 
     }
+
 </script>
 
-<div>
-    <button class="btn button-style dropdown-toggle" type="button" id="billingDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
-        {currency}
-    </button>
+<style lang=scss>
+    .inline-block {
+        display: inline-block;
+    }
 
-    <ul class="dropdown-menu" aria-labelledby="billingDropdownMenu">
-        <button class="dropdown-item" on:click={() => changeSubscriptionType('Year')}>Year</button>
-        <button class="dropdown-item" on:click={() => changeSubscriptionType('Month')}>Month</button>
-        <button class="dropdown-item" on:click={() => changeSubscriptionType('Week')}>Week</button>
-        <button class="dropdown-item" on:click={() => changeSubscriptionType('Day')}>Day</button>
-    </ul>
+    .currency-container {
+        margin: 3vmin;
+        justify-items: center;
+        justify-content: center;
+    }
+
+</style>
+
+<div class="currency-container">
+    <h1 class="inline-block">
+        Currency:  
+    </h1>
+    
+    <div class="inline-block">
+        <button class="btn btn-primary button-style dropdown-toggle" type="button" id="billingDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+            {currency}
+        </button>
+    
+        <ul class="dropdown-menu" aria-labelledby="billingDropdownMenu">
+            {#each currencies as create_currency}
+                <button class="dropdown-item" on:click={() => changeCurrency(create_currency)}>{create_currency}</button>
+            {/each}
+        </ul>
+    </div>
 </div>
-<h1>
-    Currency:  
-</h1>
+
+
 
 
