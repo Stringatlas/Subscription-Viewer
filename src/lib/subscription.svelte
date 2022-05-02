@@ -5,6 +5,7 @@
     export let description = "";
     export let image = "/default.jpg";
     import Actions from "$lib/subscriptionactions.svelte";
+    import { createEventDispatcher } from 'svelte';
 </script>
 
 <body>
@@ -16,10 +17,10 @@
     $element-margin-sides: 2%;
     $element-margin-top-bottom: 1.4%;
     $shadow-color: rgba(76, 76, 83, 0.2);
-    $element-bg-color: rgba(157, 157, 161, 63);
-    $element-border-color: rgba(181, 171, 123, 71);
-    $highlighted-element-border-color: rgba(105, 102, 92, 41);
-    $highlighted-element-bg-color: rgba(125, 125, 161, 63);
+    $element-bg-color: rgba(157, 157, 161, 1);
+    $element-border-color: rgba(181, 171, 123, 1);
+    $highlighted-element-border-color: rgba(105, 102, 92, 1);
+    $highlighted-element-bg-color: rgba(125, 125, 161, 1);
     $border-radius: 1em;
 
     .element {
@@ -65,6 +66,8 @@
         border-style: solid;
         border-width: 0.15em;
         border-color: $element-border-color;
+
+        transition: border-color $transition-time;
     }
 
     .element:hover img{
@@ -101,7 +104,7 @@
 
 <div class="element element-flex">
     <div>
-        <img src="{image}" alt="subscription icon">
+        <img src={image} alt="subscription-icon">
     </div>
 
     <div class="text-center subscription-name resize highlight">

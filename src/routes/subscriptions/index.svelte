@@ -5,6 +5,7 @@
     let price = 9.99;
     $: displayPrice = price.toFixed(2);
     let totalCost = 0;
+    prices = []
 
     let description="Netflix is a subscription-based streaming service that allows our members to watch TV shows and movies without commercials on an internet-connected device. You can also download TV shows and movies to your iOS, Android, or Windows 10 device and watch without an internet connection."
     // subscription = {"name": "Amazon Prime"}
@@ -32,8 +33,8 @@
         color: #beb0a8;
         transition: background-color $add-subscription-transition-time;
 
-        border-style: solid;
-        border-color: #beb0a8;
+        // border-style: solid;
+        // border-color: #beb0a8;
     }
 
     .add-subscription-btn:hover {

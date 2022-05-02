@@ -1,10 +1,17 @@
+<style>
+  .break-word {
+    word-wrap: break-word !important;
+    white-space: pre-wrap;
+  }
+</style>
+
 <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-dark">
   <div class="container-fluid">
 
-    <a class="navbar-brand" href="/">
-      <img src="/logo.png" alt=" " height="40"
+    <a class="break-word navbar-brand" href="/">
+      <img src="/logo.png" alt="logo" height="40"
       style="margin-left: 0.5rem;">
-      Subscription Viewer
+      <span class="break-word">Subscription Viewer</span>
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,8 +25,12 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/settings">Settings</a>
+        </li>
+
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/subscriptions" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle active" href="/subscriptions" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Subscriptions
           </a>
 

@@ -17,7 +17,7 @@
     <button
         class="btn btn-danger delete-info"
         data-toggle="modal"
-        href="#deleteModal">Delete all info</button
+        href="#deleteModal">Delete all data</button
     >
 </div>
 
