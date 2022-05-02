@@ -114,7 +114,9 @@
 
     <div class="resize highlight description">
         {#if description != ""}
-            <p><b>Description: </b>{description}</p>
+            {#if description != null && description !=undefined}
+                <p><b>Description: </b>{description}</p>
+            {/if}
         {/if}
     </div>
 </div>

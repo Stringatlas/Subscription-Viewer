@@ -1,13 +1,39 @@
+<script context="module">
+
+</script>
+
 <script>
-    import Subscription from "$lib/subscription.svelte";
+    import SubscriptionCard from "$lib/subscription.svelte";
     import BillingDropDown from "$lib/changeBillingDropdown.svelte";
+
+    class Subscription {
+        constructor (name, price, billing, description, image){
+            this.name = name;
+            this.price = price;
+            this.billing = billing;
+            this.description=description;
+            this.image = image;
+        }
+    }
+
+    let prices = [14.99, 60, 9.99]
 
     let price = 9.99;
     $: displayPrice = price.toFixed(2);
     let totalCost = 0;
-    prices = []
 
-    let description="Netflix is a subscription-based streaming service that allows our members to watch TV shows and movies without commercials on an internet-connected device. You can also download TV shows and movies to your iOS, Android, or Windows 10 device and watch without an internet connection."
+
+    let netflixDescription="Netflix is a subscription-based streaming service that allows our members to watch TV shows and movies without commercials on an internet-connected device. You can also download TV shows and movies to your iOS, Android, or Windows 10 device and watch without an internet connection."
+    
+    let costco = new Subscription("Costco Member", "60", "Year","Costco wholesale buisness membership", "/costco.png")
+    let netflix = new Subscription("Netflix", "9.99", "month", netflixDescription, "/netflix.png")
+    let prime = new Subscription("Amazon Prime", "14.99", "month", "", "/prime.png")
+
+    let subscriptions = [prime, netflix, costco]
+
+    function CalculatePrices() {
+        
+    }
     // subscription = {"name": "Amazon Prime"}
 </script>
 
@@ -84,9 +110,12 @@
 
 <body>
     <div class="flexer">
-        <Subscription name={"Amazon Prime"} price="14.99" subscriptionBilling="month" image="/prime.png"/>
-        <Subscription name={"Costco Member"} price="60" subscriptionBilling="year" image="/costco.png"/>
-        <Subscription name={"Netflix"} price="9.99" subscriptionBilling="month" description="{description}" image="/netflix.png"/>
+        {#each subscriptions as subscription}
+            <SubscriptionCard name={subscription.name} price={subscription.price} 
+            subscriptionBilling={subscription.billing} image={subscription.image} description={subscription.description}/>
+        {/each}
+
+       
     </div>
 </body>
 
