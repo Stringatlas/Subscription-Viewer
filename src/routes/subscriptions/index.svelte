@@ -11,10 +11,12 @@
             this.name = name;
             this.price = price;
             this.billing = billing;
-            this.description=description;
+            this.description = description;
             this.image = image;
         }
     }
+
+    let subscriptionType;
 
     let prices = [14.99, 60, 9.99]
 
@@ -32,7 +34,7 @@
     let subscriptions = [prime, netflix, costco]
 
     function CalculatePrices() {
-        
+
     }
     // subscription = {"name": "Amazon Prime"}
 </script>
@@ -99,8 +101,9 @@
 <div class="topBar">
     <div class="flex-row">
         <h1 style="margin:0.5em">Total cost: ${totalCost}</h1>
-        <BillingDropDown class="billing-dropdown" style="margin:10px"/>
+        <BillingDropDown class="billing-dropdown" bind:subscriptionType={subscriptionType}/>
     </div>
+    <h1>{subscriptionType}</h1>
     
     <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" height="12.5vmin" width="12.5vmin" fill="currentColor" viewBox="0 0 16 16">
         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
