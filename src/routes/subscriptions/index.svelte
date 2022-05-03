@@ -4,7 +4,7 @@
 
 <script>
     import SubscriptionCard from "$lib/subscription.svelte";
-    import BillingDropDown from "$lib/changeBillingDropdown.svelte";
+    import DropDown from "$lib/dropdown.svelte";
 
     class Subscription {
         constructor (name, price, billing, description, image){
@@ -101,9 +101,8 @@
 <div class="topBar">
     <div class="flex-row">
         <h1 style="margin:0.5em">Total cost: ${totalCost}</h1>
-        <BillingDropDown class="billing-dropdown" bind:subscriptionType={subscriptionType}/>
+        <DropDown bind:value={subscriptionType} items={["Day", "Week", "Month", "Year"]} />
     </div>
-    <h1>{subscriptionType}</h1>
     
     <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" height="12.5vmin" width="12.5vmin" fill="currentColor" viewBox="0 0 16 16">
         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -117,8 +116,6 @@
             <SubscriptionCard name={subscription.name} price={subscription.price} 
             subscriptionBilling={subscription.billing} image={subscription.image} description={subscription.description}/>
         {/each}
-
-       
     </div>
 </body>
 

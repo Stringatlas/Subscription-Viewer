@@ -5,7 +5,7 @@
     export let description = "";
     export let image = "/default.jpg";
     import Actions from "$lib/subscriptionactions.svelte";
-    import { createEventDispatcher } from 'svelte';
+    // import { createEventDispatcher } from 'svelte';
 </script>
 
 <body>

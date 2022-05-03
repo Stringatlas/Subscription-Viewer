@@ -2,7 +2,7 @@
     import Success from "$lib/successmodal.svelte";
 
     function deleteAllLocalStorage() {
-        localStorage.clear();
+        alert("Delete all subscription data in localstorage (not done yet)")
     }
 </script>
 

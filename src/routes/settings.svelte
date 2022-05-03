@@ -1,4 +1,5 @@
 <script>
+    import DropDown from "$lib/dropdown.svelte"
     export let currency = "$ Dollar";
 
     let currencies = [
@@ -7,6 +8,13 @@
         "€ Euro",
         "¥ Yuan/Yen",
         "₹ Rupee"
+    ];
+
+    let billingPlans = [
+        "Daily",
+        "Weekly",
+        "Monthly",
+        "Yearly"
     ];
 
     function changeCurrency(change_currency){
@@ -20,20 +28,40 @@
 </script>
 
 <style lang=scss>
+    $side-margin: 1.5vmin;
+
     .inline-block {
         display: inline-block;
     }
 
     .currency-container {
-        margin: 3vmin;
-        justify-items: center;
-        justify-content: center;
+        margin: $side-margin;
     }
 
     .title {
-        margin-top: 3vmin;
+        margin-top: 2vmin;
     }
 
+    .form-check {
+        margin-left: 2vmin;
+    }
+
+    .form-check-label {
+        font-size: 2.5vmin;
+    }
+    
+    h1 {
+        margin-top: 1vmin;
+    }
+
+    button {
+        margin-left: 1vmin;
+    }
+
+    .billing-plan-input {
+        display: block;
+        margin-top: 1vmin;
+    }
 </style>
 
 <div class="title">
@@ -46,22 +74,45 @@
 
 <div class="currency-container">
     <h1 class="inline-block">
-
         Currency:  
     </h1>
-    
     <div class="inline-block">
-        <button class="btn btn-primary button-style dropdown-toggle" type="button" id="billingDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
-            {currency}
-        </button>
-    
-        <ul class="dropdown-menu" aria-labelledby="billingDropdownMenu">
-            {#each currencies as create_currency}
-                <button class="dropdown-item" on:click={() => changeCurrency(create_currency)}>{create_currency}</button>
-            {/each}
-        </ul>
+        <DropDown items={currencies} fontSize="1.75vmin"/>
+    </div>
+
+</div>
+
+<div class="currency-container">
+    <h1>Display Prices</h1>
+    <h5>(Used in Analytics and Total price display)</h5>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+
+        <label class="form-check-label" for="flexRadioDefault1">
+          Average Price
+        </label>
+
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+          Display Separate
+        </label>
     </div>
 </div>
+
+<div class="currency-container">
+    <h1 class="inline-block">Billing Plans</h1>
+    <button class="btn btn-success inline-block">Add New Billing Plan</button>
+    <button class="btn btn-danger inline-block">Delete First Billing Plan</button>
+
+    <input bind:value={billingPlans}>
+    {#each billingPlans as billingPlan}
+        <input class="billing-plan-input" type="text" bind:value={billingPlan}>
+    {/each}
+
+</div>
+
 
 
 

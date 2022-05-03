@@ -2,7 +2,7 @@
 <script>
   let subscriptionType = "Month";
 
-  import BillingDropDown from "$lib/changeBillingDropdown.svelte";
+  import DropDown from "$lib/dropdown.svelte";
   
 </script>
 <style>
@@ -45,7 +45,7 @@
 </style>
 
 <div class="actions-container highlight">
-  <BillingDropDown subscriptionType={subscriptionType} />
+  <dropDown subscriptionType={subscriptionType} />
 
   <button class="transparent edit">
     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
