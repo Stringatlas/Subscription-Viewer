@@ -17,6 +17,17 @@
         "Yearly"
     ];
 
+    function addNewBillingPlan () {
+		billingPlans = [...billingPlans, "New billing plan"]
+		console.log(billingPlans);
+	}
+	
+	function deleteLastBillingPlan () {
+		billingPlans.pop();
+		billingPlans = billingPlans;
+		console.log(billingPlans)
+	}
+
     function changeCurrency(change_currency){
         currency = change_currency;
     }
@@ -62,6 +73,16 @@
         display: block;
         margin-top: 1vmin;
     }
+
+    #btn-save-settings {
+        font-size: 3vmin;
+        padding: 1vmin;
+    }
+
+    .btn-settings {
+        font-size: 3vmin;
+        padding: 1vmin;
+    }
 </style>
 
 <div class="title">
@@ -103,15 +124,15 @@
 
 <div class="currency-container">
     <h1 class="inline-block">Billing Plans</h1>
-    <button class="btn btn-success inline-block">Add New Billing Plan</button>
-    <button class="btn btn-danger inline-block">Delete First Billing Plan</button>
+    <button class="btn btn-success btn-settings inline-block" on:click={addNewBillingPlan}>Add New Billing Plan</button>
+    <button class="btn btn-danger btn-settings inline-block" on:click={deleteLastBillingPlan}>Delete Last Billing Plan</button>
 
-    <input bind:value={billingPlans}>
     {#each billingPlans as billingPlan}
         <input class="billing-plan-input" type="text" bind:value={billingPlan}>
     {/each}
-
 </div>
+
+<button class="btn btn-success" id="btn-save-settings">Save Settings</button>
 
 
 

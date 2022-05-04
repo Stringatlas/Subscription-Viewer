@@ -62,18 +62,8 @@
         max-height: 30vh;
         margin: $img-margin;
         border-radius: $border-radius;
-
-        border-style: solid;
-        border-width: 0.15em;
-        border-color: $element-border-color;
-
-        transition: border-color $transition-time;
     }
 
-    .element:hover img{
-        border-color: $highlighted-element-border-color;
-        transition: border-color $transition-time;
-    }
 
     .element-flex {
         display: flex;
