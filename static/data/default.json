@@ -1,0 +1,17 @@
+{
+    "settings": {
+        "displayPrices": "average",
+        "billingPlans": ["Day", "Week", "Month", "Year"],
+        "currency": "$ dollar",
+        "symbolCurrency": "$",
+        "currencies": ["$ Dollar", "£ Pound", "€ Euro", "¥ Yuan/Yen", "₹ Rupee"]
+    },
+    
+    "subscription": {
+        
+    },
+
+    "analytics": {
+
+    }
+}

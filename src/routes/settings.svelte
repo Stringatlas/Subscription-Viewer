@@ -80,8 +80,8 @@
     }
 
     .btn-settings {
-        font-size: 3vmin;
-        padding: 1vmin;
+        font-size: 2vmin;
+        padding: 0.6vmin;
     }
 </style>
 

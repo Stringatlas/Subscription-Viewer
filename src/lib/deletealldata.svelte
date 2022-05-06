@@ -12,12 +12,12 @@
 
 <div class="text-center transparent-background">
     <h3 class="header-that-says-data-in-localstorage">
-        All data is stored in Localstorage
+        All subscription data is stored in Localstorage
     </h3>
     <button
         class="btn btn-danger delete-info"
         data-toggle="modal"
-        href="#deleteModal">Delete all data</button
+        href="#deleteModal">Delete all subscription data</button
     >
 </div>
 
@@ -55,7 +55,7 @@
                     data-toggle="modal"
                     class="btn btn-danger"
                     data-dismiss="modal"
-                    on:click={deleteAllLocalStorage()}>Delete</button
+                    on:click={deleteAllLocalStorage}>Delete</button
                 >
             </div>
         </div>

@@ -5,9 +5,10 @@
 <script>
     import SubscriptionCard from "$lib/subscription.svelte";
     import DropDown from "$lib/dropdown.svelte";
+    import SubscriptionEditCard from "$lib/subscriptionedit.svelte"
 
     class Subscription {
-        constructor (name, price, billing, description, image){
+        constructor (name="Subscription", price=9.99, billing="Year", description="", image="/default.jpg"){
             this.name = name;
             this.price = price;
             this.billing = billing;
@@ -35,6 +36,12 @@
 
     function CalculatePrices() {
 
+    }
+
+    function createSubscription() {
+        console.log("Create Subscription")
+        var subscription = new Subscription()
+        subscriptions = [...subscriptions, subscription]
     }
     // subscription = {"name": "Amazon Prime"}
 </script>
@@ -104,7 +111,8 @@
         <DropDown bind:value={subscriptionType} items={["Day", "Week", "Month", "Year"]} />
     </div>
     
-    <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" height="12.5vmin" width="12.5vmin" fill="currentColor" viewBox="0 0 16 16">
+    <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" 
+    height="12.5vmin" width="12.5vmin" fill="currentColor" viewBox="0 0 16 16" on:click={createSubscription}>
         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
     </svg>
 </div>
@@ -112,10 +120,13 @@
 
 <body>
     <div class="flexer">
+        <SubscriptionEditCard />
         {#each subscriptions as subscription}
             <SubscriptionCard name={subscription.name} price={subscription.price} 
             subscriptionBilling={subscription.billing} image={subscription.image} description={subscription.description}/>
         {/each}
+
+
     </div>
 </body>
 
