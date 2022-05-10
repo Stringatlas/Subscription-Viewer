@@ -5,18 +5,12 @@
 <script>
     import SubscriptionCard from "$lib/subscription.svelte";
     import DropDown from "$lib/dropdown.svelte";
-    import SubscriptionEditCard from "$lib/subscriptionedit.svelte"
+    import SubscriptionEditCard from "$lib/subscriptionedit.svelte";
 
-    class Subscription {
-        constructor (name="Subscription", price=9.99, billing="Year", description="", image="/default.jpg"){
-            this.name = name;
-            this.price = price;
-            this.billing = billing;
-            this.description = description;
-            this.image = image;
-        }
-    }
+    import {Subscription} from "$lib/subscriptions.js";
+    
 
+    
     let subscriptionType;
 
     let prices = [14.99, 60, 9.99]
@@ -26,11 +20,11 @@
     let totalCost = 0;
 
 
-    let netflixDescription="Netflix is a subscription-based streaming service that allows our members to watch TV shows and movies without commercials on an internet-connected device. You can also download TV shows and movies to your iOS, Android, or Windows 10 device and watch without an internet connection."
+    let netflixDescription="Netflix is a subscription-based streaming service that allows our members to watch TV shows and movies without commercials on an internet-connected device. You can also download TV shows and movies to your iOS, Android, or Windows 10 device and watch without an internet connection.";
     
-    let costco = new Subscription("Costco Member", "60", "Year","Costco wholesale buisness membership", "/costco.png")
-    let netflix = new Subscription("Netflix", "9.99", "month", netflixDescription, "/netflix.png")
-    let prime = new Subscription("Amazon Prime", "14.99", "month", "", "/prime.png")
+    let costco = new Subscription("Costco Member", "60", "Year","Costco wholesale buisness membership", "/costco.png", "www.costco.com");
+    let netflix = new Subscription("Netflix", "9.99", "month", netflixDescription, "/netflix.png");
+    let prime = new Subscription("Amazon Prime", "14.99", "month", "", "/prime.png");
 
     let subscriptions = [prime, netflix, costco]
 
@@ -122,11 +116,8 @@
     <div class="flexer">
         <SubscriptionEditCard />
         {#each subscriptions as subscription}
-            <SubscriptionCard name={subscription.name} price={subscription.price} 
-            subscriptionBilling={subscription.billing} image={subscription.image} description={subscription.description}/>
+            <SubscriptionCard subscription={subscription}/>
         {/each}
-
-
     </div>
 </body>
 

@@ -5,6 +5,7 @@
   import DropDown from "$lib/dropdown.svelte";
   
 </script>
+
 <style>
   .actions-container {
     width: fit-content;

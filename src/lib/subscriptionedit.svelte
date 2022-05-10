@@ -102,7 +102,7 @@
     <div class="text-center subscription-name resize highlight">
 
         <div id="subscription-name input name-input">
-            <input type="text" placeholder="Subscription Name">
+            <input type="text" placeholder="Subscription Name" value={name}>
         </div>
 
         <div id="billing inline-block">
@@ -113,7 +113,6 @@
             </div>
 
         </div>
-        <h1>${price}/{subscriptionBilling}</h1>
     </div>
 
     <div class="resize highlight description">

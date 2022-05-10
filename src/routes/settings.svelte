@@ -1,31 +1,19 @@
 <script>
-    import DropDown from "$lib/dropdown.svelte"
+    import DropDown from "$lib/dropdown.svelte";
+    import { onMount } from "svelte";
+    import { billingPlans, currencies} from "$lib/data/settingsData.js";
     export let currency = "$ Dollar";
 
-    let currencies = [
-        "$ Dollar",
-        "£ Pound",
-        "€ Euro",
-        "¥ Yuan/Yen",
-        "₹ Rupee"
-    ];
-
-    let billingPlans = [
-        "Daily",
-        "Weekly",
-        "Monthly",
-        "Yearly"
-    ];
-
+    import defaultSettings from "$lib/data/default.json";
+    
     function addNewBillingPlan () {
-		billingPlans = [...billingPlans, "New billing plan"]
+		$billingPlans = [...$billingPlans, "New billing plan"]
 		console.log(billingPlans);
 	}
-	
 	function deleteLastBillingPlan () {
-		billingPlans.pop();
-		billingPlans = billingPlans;
-		console.log(billingPlans)
+		$billingPlans.pop();
+		$billingPlans = $billingPlans;
+		console.log($billingPlans)
 	}
 
     function changeCurrency(change_currency){
@@ -37,6 +25,8 @@
     }
 
 </script>
+<p>{JSON.stringify($billingPlans)}</p>
+<p>{JSON.stringify($currencies)}</p>
 
 <style lang=scss>
     $side-margin: 1.5vmin;
@@ -98,7 +88,7 @@
         Currency:  
     </h1>
     <div class="inline-block">
-        <DropDown items={currencies} fontSize="1.75vmin"/>
+        <DropDown items={$currencies} fontSize="1.75vmin"/>
     </div>
 
 </div>
@@ -127,7 +117,7 @@
     <button class="btn btn-success btn-settings inline-block" on:click={addNewBillingPlan}>Add New Billing Plan</button>
     <button class="btn btn-danger btn-settings inline-block" on:click={deleteLastBillingPlan}>Delete Last Billing Plan</button>
 
-    {#each billingPlans as billingPlan}
+    {#each $billingPlans as billingPlan}
         <input class="billing-plan-input" type="text" bind:value={billingPlan}>
     {/each}
 </div>

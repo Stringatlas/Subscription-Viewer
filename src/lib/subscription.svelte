@@ -1,9 +1,8 @@
 <script>
-    export let name;
-    export let price;
-    export let subscriptionBilling;
-    export let description = "";
-    export let image = "/default.jpg";
+    import {Subscription} from "$lib/subscriptions.js";
+
+    export let subscription;
+
     import Actions from "$lib/subscriptionactions.svelte";
     // import { createEventDispatcher } from 'svelte';
 </script>
@@ -56,12 +55,19 @@
         min-width: 20vw;
         max-width: 40vw;
 
+        max-height: 30vh;
         width:100%;
+
         object-fit: contain;
 
-        max-height: 30vh;
-        margin: $img-margin;
+        width:100%;
+
         border-radius: $border-radius;
+    }
+
+    #img-div {
+        margin: $img-margin;
+        background-color: none;
     }
 
 
@@ -90,22 +96,32 @@
     .subscription-name {
         margin-left: 3%;
     }
+
+    #left-side {
+        display: flexbox;
+        flex-direction: column;
+        align-content: center;
+    }
 </style>
 
 <div class="element element-flex">
-    <div>
-        <img src={image} alt="subscription-icon">
+    <div id="left-side">
+        <div id="img-div">
+            <img src={subscription.image} alt="subscription-icon">
+        </div>
+        <!-- <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer">Redirect </a> -->
     </div>
 
+
     <div class="text-center subscription-name resize highlight">
-        <h1>{name}</h1>
-        <h1>${price}/{subscriptionBilling}</h1>
+        <h1 href={subscription.link}>{subscription.name}</h1>
+        <h1>${subscription.price}/{subscription.subscriptionBilling}</h1>
     </div>
 
     <div class="resize highlight description">
-        {#if description != ""}
-            {#if description != null && description !=undefined}
-                <p><b>Description: </b>{description}</p>
+        {#if subscription.description != ""}
+            {#if subscription.description != null && subscription.description != undefined}
+                <p><b>Description: </b>{subscription.description}</p>
             {/if}
         {/if}
     </div>
