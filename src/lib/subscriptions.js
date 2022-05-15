@@ -1,7 +1,7 @@
 let ids = [];
 
 export class Subscription {
-    constructor (name="Subscription", price=9.99, billing="Year", description="", image="/default.jpg", link=""){
+    constructor (name="Subscription", price=9.99, billing="Year", description="", link="", image="/default.jpg"){
         this.name = name;
         this.price = price;
         this.billing = billing;

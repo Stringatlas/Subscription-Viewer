@@ -8,8 +8,8 @@
     import SubscriptionEditCard from "$lib/subscriptionedit.svelte";
 
     import {Subscription} from "$lib/subscriptions.js";
-    
 
+    import { billingPlans, currencies, subscriptions} from "$lib/data/settingsData.js";
     
     let subscriptionType;
 
@@ -19,23 +19,27 @@
     $: displayPrice = price.toFixed(2);
     let totalCost = 0;
 
+    $: convertedSubscriptions = convertSubscriptions($subscriptions);
 
-    let netflixDescription="Netflix is a subscription-based streaming service that allows our members to watch TV shows and movies without commercials on an internet-connected device. You can also download TV shows and movies to your iOS, Android, or Windows 10 device and watch without an internet connection.";
-    
-    let costco = new Subscription("Costco Member", "60", "Year","Costco wholesale buisness membership", "/costco.png", "www.costco.com");
-    let netflix = new Subscription("Netflix", "9.99", "month", netflixDescription, "/netflix.png");
-    let prime = new Subscription("Amazon Prime", "14.99", "month", "", "/prime.png");
+    function convertSubscriptions(subscriptions) {
+        let _convertedSubscriptions = [];
 
-    let subscriptions = [prime, netflix, costco]
+        for (let subscription of subscriptions) {
+            _convertedSubscriptions.push(new Subscription(subscription.name, subscription.price, 
+            subscription.billing, subscription.description, subscription.link, 
+            subscription.image));
+        }
 
+        return _convertedSubscriptions;
+    }
     function CalculatePrices() {
 
     }
 
     function createSubscription() {
-        console.log("Create Subscription")
-        var subscription = new Subscription()
-        subscriptions = [...subscriptions, subscription]
+        var subscription = new Subscription();
+        $subscriptions = [...$subscriptions, subscription];
+        console.log("Create Subscription");
     }
     // subscription = {"name": "Amazon Prime"}
 </script>
@@ -102,7 +106,7 @@
 <div class="topBar">
     <div class="flex-row">
         <h1 style="margin:0.5em">Total cost: ${totalCost}</h1>
-        <DropDown bind:value={subscriptionType} items={["Day", "Week", "Month", "Year"]} />
+        <DropDown bind:value={subscriptionType} items={$billingPlans} />
     </div>
     
     <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" 
@@ -114,9 +118,9 @@
 
 <body>
     <div class="flexer">
-        <SubscriptionEditCard />
-        {#each subscriptions as subscription}
-            <SubscriptionCard subscription={subscription}/>
+        <!-- <SubscriptionEditCard subscription={convertSubscriptions[0]}/> -->
+        {#each convertedSubscriptions as subscription}
+            <SubscriptionCard bind:subscription={subscription} />
         {/each}
     </div>
 </body>

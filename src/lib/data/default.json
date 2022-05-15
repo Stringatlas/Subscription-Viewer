@@ -6,10 +6,32 @@
         "symbolCurrency": "$",
         "currencies": ["$ Dollar", "£ Pound", "€ Euro", "¥ Yuan/Yen", "₹ Rupee"]
     },
-    
-    "subscription": {
-        "name": "netflix"
-    },
+    "defaultSubscriptions": [
+        {
+            "name": "Netflix",
+            "price": 9.99,
+            "billing": "month",
+            "description": "Netflix is a subscription-based streaming service that allows our members to watch TV shows and movies without commercials on an internet-connected device. You can also download TV shows and movies to your iOS, Android, or Windows 10 device and watch without an internet connection.",
+            "link": "https://www.netflix.com/",
+            "image": "/netflix.png"
+        },
+        {
+            "name": "Costco Membership",
+            "price": 60,
+            "billing": "year",
+            "description": "Costco Wholesale - Buisness membership",
+            "link": "https://www.costco.com",
+            "image": "/costco.png"
+        },
+        {
+            "name": "Amazon Prime",
+            "price": 14.99,
+            "billing": "month",
+            "description": "",
+            "link": "https://www.amazon.com/",
+            "image": "/prime.png" 
+        }
+    ],
 
     "analytics": {
 

@@ -115,7 +115,7 @@
 
     <div class="text-center subscription-name resize highlight">
         <h1 href={subscription.link}>{subscription.name}</h1>
-        <h1>${subscription.price}/{subscription.subscriptionBilling}</h1>
+        <h1>${subscription.price}/{subscription.billing}</h1>
     </div>
 
     <div class="resize highlight description">

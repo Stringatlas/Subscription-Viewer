@@ -1,8 +1,5 @@
 <script>
-    export let name;
-    export let price;
-    export let subscriptionBilling;
-    export let description = "";
+    export let subscription;
 
     export let image = "/default.jpg";
     import Actions from "$lib/subscriptionactions.svelte";
@@ -102,7 +99,7 @@
     <div class="text-center subscription-name resize highlight">
 
         <div id="subscription-name input name-input">
-            <input type="text" placeholder="Subscription Name" value={name}>
+            <input type="text" placeholder="Subscription Name" value={subscription.name}>
         </div>
 
         <div id="billing inline-block">
@@ -116,7 +113,7 @@
     </div>
 
     <div class="resize highlight description">
-        <p><b>Description: </b>{description}</p>
+        <p><b>Description: </b>{subscription.description}</p>
 
     </div>
 </div>

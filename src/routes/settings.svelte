@@ -8,12 +8,19 @@
     
     function addNewBillingPlan () {
 		$billingPlans = [...$billingPlans, "New billing plan"]
-		console.log(billingPlans);
 	}
 	function deleteLastBillingPlan () {
 		$billingPlans.pop();
 		$billingPlans = $billingPlans;
-		console.log($billingPlans)
+	}
+
+    function addNewCurrency () {
+		$currencies = [...$currencies, "! New Currency"]
+	}
+	function deleteLastCurrency () {
+		$currencies.pop();
+		$currencies = $currencies;
+
 	}
 
     function changeCurrency(change_currency){
@@ -35,7 +42,7 @@
         display: inline-block;
     }
 
-    .currency-container {
+    .settings-section {
         margin: $side-margin;
     }
 
@@ -63,6 +70,10 @@
         display: block;
         margin-top: 1vmin;
     }
+    .currency-input {
+        display: block;
+        margin-top: 1vmin;
+    }
 
     #btn-save-settings {
         font-size: 3vmin;
@@ -83,7 +94,7 @@
 </div>
 
 
-<div class="currency-container">
+<div class="settings-section">
     <h1 class="inline-block">
         Currency:  
     </h1>
@@ -91,9 +102,20 @@
         <DropDown items={$currencies} fontSize="1.75vmin"/>
     </div>
 
+    <div class="settings-section">
+        <div class="settings-section">
+            <h1 class="inline-block">Billing Plans</h1>
+            <button class="btn btn-success btn-settings inline-block" on:click={addNewCurrency}>Add New Currency</button>
+            <button class="btn btn-danger btn-settings inline-block" on:click={deleteLastCurrency}>Delete Last Currency</button>
+        
+            {#each $currencies as currency}
+                <input class="currency-input" type="text" bind:value={currency}>
+            {/each}
+        </div>
+    </div>
 </div>
 
-<div class="currency-container">
+<div class="settings-section">
     <h1>Display Prices</h1>
     <h5>(Used in Analytics and Total price display)</h5>
     <div class="form-check">
@@ -112,7 +134,7 @@
     </div>
 </div>
 
-<div class="currency-container">
+<div class="settings-section">
     <h1 class="inline-block">Billing Plans</h1>
     <button class="btn btn-success btn-settings inline-block" on:click={addNewBillingPlan}>Add New Billing Plan</button>
     <button class="btn btn-danger btn-settings inline-block" on:click={deleteLastBillingPlan}>Delete Last Billing Plan</button>
