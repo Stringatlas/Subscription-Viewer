@@ -4,10 +4,13 @@ import { browser } from '$app/env';
 import {settings, defaultSubscriptions} from "$lib/data/default.json";
 import {Subscription} from "$lib/subscriptions.js";
 
-console.log(defaultSubscriptions);
+let defaultBillingPlans = settings["billingPlans"];
+let defaultCurrencies = settings["currencies"];
+let defaultHowToDisplayCost = settings["howToDisplayCost"];
+
 // only use if it is client
 const storedBillingPlans = (browser && 
-    JSON.parse(localStorage.getItem("billingPlans"))) || settings["billingPlans"];
+    JSON.parse(localStorage.getItem("billingPlans"))) || defaultBillingPlans;
 
 export const billingPlans = writable(storedBillingPlans);
 billingPlans.subscribe(
@@ -16,7 +19,7 @@ billingPlans.subscribe(
 
 
 const storedCurrencies = (browser && 
-    JSON.parse(localStorage.getItem("currencies"))) || settings["currencies"];
+    JSON.parse(localStorage.getItem("currencies"))) || defaultCurrencies;
 
 export const currencies = writable(storedCurrencies);
 currencies.subscribe(
@@ -32,3 +35,5 @@ subscriptions.subscribe(
     (value) => browser && (localStorage.subscriptions = JSON.stringify(value))
 );
 
+const storedHowToDisplayCost = (browser &&
+    JSON.parse(localStorage.getItem("howToDisplayCost"))) || defaultHowToDisplayCost; // average, separate

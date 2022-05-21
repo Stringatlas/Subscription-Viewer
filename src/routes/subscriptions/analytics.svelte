@@ -1,7 +1,8 @@
 <script>
-    // import Piechart from "$lib/piechart.svelte"
-    import Barchart from "$lib/barchart.svelte"
+    import Barchart from "$lib/barchart.svelte";
+    import PieChart from "$lib/piechart.svelte";
 </script>
+
 <style>
     h1 {
         text-align: center;
@@ -12,3 +13,4 @@
 <h1>charts</h1>
 
 <Barchart />
+<PieChart />

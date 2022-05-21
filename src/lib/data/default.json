@@ -4,8 +4,11 @@
         "billingPlans": ["Day", "Week", "Month", "Year"],
         "currency": "$ dollar",
         "symbolCurrency": "$",
-        "currencies": ["$ Dollar", "£ Pound", "€ Euro", "¥ Yuan/Yen", "₹ Rupee"]
+        "currencies": ["$ USD", "$ CAD", "£ Pound", "€ Euro", "¥ Yuan", "¥ Yen", "₹ Rupee"],
+        "howToDisplayCost": "Average", 
+        "howToDisplayCurrency": "Convert"
     },
+
     "defaultSubscriptions": [
         {
             "name": "Netflix",

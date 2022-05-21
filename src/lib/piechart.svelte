@@ -1,26 +1,50 @@
-<script>
-    import { GoogleCharts } from "google-charts";
-    import { onMount } from "svelte";
+<!-- <script>
+    // import Chart from "chart.js";
+    import onMount from "svelte";
     let chartObj;
-    // onMount(() => {
-    //     GoogleCharts.load(drawChart);
+    let paragraph;
 
-    //     function drawChart() {
-    //         // Standard google charts functionality is available as GoogleCharts.api after load
-    //         const data = GoogleCharts.api.visualization.arrayToDataTable([
-    //             ["Chart thing", "Chart amount"],
-    //             ["Lorem ipsum", 60],
-    //             ["Dolor sit", 22],
-    //             ["Sit amet", 18],
-    //         ]);
-    //         const pie_1_chart = new GoogleCharts.api.visualization.PieChart(
-    //             chartObj
-    //         );
-    //         pie_1_chart.draw(data);
-    //     }
-    // })
+    onMount = () => {
+        let newChart = new Chart(chartObj, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
 
 </script>
 
 <h1>pie chart</h1>
-<div id="myChart" bind:this={chartObj} style="max-width:700px; height:400px" />
+<canvas id="myChart" bind:this={chartObj} style="max-width:700px; height:400px"></canvas>
+
+<p bind:this={paragraph}>hawet</p> -->

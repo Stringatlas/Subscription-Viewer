@@ -4,23 +4,21 @@
     import { billingPlans, currencies} from "$lib/data/settingsData.js";
     export let currency = "$ Dollar";
 
-    import defaultSettings from "$lib/data/default.json";
-    
+    import { settings } from "$lib/data/default.json";
+
     function addNewBillingPlan () {
-		$billingPlans = [...$billingPlans, "New billing plan"]
+		$billingPlans = [...$billingPlans, "New billing plan"];
 	}
 	function deleteLastBillingPlan () {
-		$billingPlans.pop();
-		$billingPlans = $billingPlans;
+		$billingPlans = $billingPlans.slice(0, -1);
 	}
 
     function addNewCurrency () {
-		$currencies = [...$currencies, "! New Currency"]
+		$currencies = [...$currencies, "! New Currency"];
 	}
-	function deleteLastCurrency () {
-		$currencies.pop();
-		$currencies = $currencies;
 
+	function deleteLastCurrency () {
+		$currencies = $currencies.slice(0, -1);
 	}
 
     function changeCurrency(change_currency){
@@ -29,6 +27,11 @@
 
     function createDropDownOptions() {
 
+    }
+
+    function resetSettingsToDefault() {
+        $billingPlans = settings.billingPlans;
+        $currencies = settings.currencies;
     }
 
 </script>
@@ -44,6 +47,7 @@
 
     .settings-section {
         margin: $side-margin;
+        margin-top: calc(2 * $side-margin);
     }
 
     .title {
@@ -84,6 +88,21 @@
         font-size: 2vmin;
         padding: 0.6vmin;
     }
+
+    .highlight {
+        background-color: red;
+    }
+
+    .radio-element {
+        margin-right: 10vmin;
+    }
+
+    .inline-flexer {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
 </style>
 
 <div class="title">
@@ -101,36 +120,51 @@
     <div class="inline-block">
         <DropDown items={$currencies} fontSize="1.75vmin"/>
     </div>
-
-    <div class="settings-section">
-        <div class="settings-section">
-            <h1 class="inline-block">Billing Plans</h1>
-            <button class="btn btn-success btn-settings inline-block" on:click={addNewCurrency}>Add New Currency</button>
-            <button class="btn btn-danger btn-settings inline-block" on:click={deleteLastCurrency}>Delete Last Currency</button>
-        
-            {#each $currencies as currency}
-                <input class="currency-input" type="text" bind:value={currency}>
-            {/each}
-        </div>
-    </div>
 </div>
 
 <div class="settings-section">
-    <h1>Display Prices</h1>
-    <h5>(Used in Analytics and Total price display)</h5>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+    <h1 class="inline-block">Currencies</h1>
+    <button class="btn btn-success btn-settings inline-block" on:click={addNewCurrency}>Add New Currency</button>
+    <button class="btn btn-danger btn-settings inline-block" on:click={deleteLastCurrency}>Delete Last Currency</button>
 
+    {#each $currencies as currency}
+        <input class="currency-input" type="text" bind:value={currency}>
+    {/each}
+</div>
+
+<div class="settings-section">
+    <h1>Display Costs</h1>
+    <h5>(Used in Analytics and Total costs display)</h5>
+    
+    <div class="form-check inline-block radio-element">
+        <input class="form-check-input" type="radio" name="AveragePriceRadio" id="flexRadioDefault1">
         <label class="form-check-label" for="flexRadioDefault1">
-          Average Price
+            Average Costs
         </label>
+      
+        <div class="">
+            <input class="form-check-input" type="radio" name="AveragePriceRadio" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                Display Separate Costs
+            </label>
+        </div>
+    </div>
 
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2">
-          Display Separate
+    <div class="form-check inline-block radio-element">
+        <input class="form-check-input" type="radio" name="CurrencyPriceRadio" id="flexRadioDefault3">
+        <label class="form-check-label" for="flexRadioDefault3">
+            <div class="inline-flexer">
+                Convert Currencies
+                <DropDown items={$currencies} fontSize="1.75vmin"/>
+            </div>
+
         </label>
+        <div class="">
+            <input class="form-check-input" type="radio" name="CurrencyPriceRadio" id="flexRadioDefault4" checked>
+            <label class="form-check-label" for="flexRadioDefault4">
+                Display Separate Currencies
+            </label>
+        </div>
     </div>
 </div>
 
@@ -144,7 +178,7 @@
     {/each}
 </div>
 
-<button class="btn btn-success" id="btn-save-settings">Save Settings</button>
+<button class="btn btn-success" id="btn-save-settings" on:click={resetSettingsToDefault}>Reset To Default</button>
 
 
 
