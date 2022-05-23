@@ -6,21 +6,15 @@
     import SubscriptionCard from "$lib/subscription.svelte";
     import DropDown from "$lib/dropdown.svelte";
     import SubscriptionEditCard from "$lib/subscriptionedit.svelte";
-
+    import { onMount } from "svelte";
     import {Subscription} from "$lib/subscriptions.js";
 
     import { billingPlans, currencies, subscriptions} from "$lib/data/settingsData.js";
     
     let subscriptionType;
 
-    let prices = [14.99, 60, 9.99]
-
-    let price = 9.99;
-    $: displayPrice = price.toFixed(2);
-    let totalCost = 0;
-
     $: convertedSubscriptions = convertSubscriptions($subscriptions);
-
+    let totalCost = 0;
     function convertSubscriptions(subscriptions) {
         let _convertedSubscriptions = [];
 
@@ -32,16 +26,44 @@
 
         return _convertedSubscriptions;
     }
+    let costs;
+    let displayCosts
+    // $: displayPrice = totalCost.toFixed(2);
+    let displayPrice = 0;
     function CalculatePrices() {
+        displayCosts = []
+        costs = {};
+        totalCost = 0;
+        for (let subscription of $subscriptions) {
+            let billingPlan = subscription.billing;
+            if (billingPlan in costs){
+                costs[billingPlan] += parseFloat(subscription.price);
+            } else {
+                costs[billingPlan] = parseFloat(subscription.price);
+            }
 
+            totalCost += subscription.price;
+        }
+        displayPrice = totalCost.toFixed(2);
+
+        for (let key in costs){
+            if (costs.hasOwnProperty(key)) {
+                console.log("ahah")
+                displayCosts.push(`\$${costs[key].toFixed(2)}/${key}`);
+            }
+        }
+
+        console.log(costs);
+        console.log(displayCosts);
     }
 
     function createSubscription() {
         var subscription = new Subscription();
         $subscriptions = [...$subscriptions, subscription];
-        console.log("Create Subscription");
+        CalculatePrices();
     }
-    // subscription = {"name": "Amazon Prime"}
+
+    CalculatePrices();
 </script>
 
 <style lang=scss>
@@ -96,7 +118,13 @@
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
+    }
 
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
     }
     h1 {
         font-size: 6vw;
@@ -105,7 +133,7 @@
 
 <div class="topBar">
     <div class="flex-row">
-        <h1 style="margin:0.5em">Total cost: ${totalCost}</h1>
+        <h1 style="margin:0.5em">Total cost: ${displayPrice}</h1>
         <DropDown bind:value={subscriptionType} items={$billingPlans} />
     </div>
     
@@ -115,6 +143,11 @@
     </svg>
 </div>
 
+<div class="flex-column">
+    {#each displayCosts as displayCost}
+        <h1>{displayCost}</h1>
+    {/each}
+</div>
 
 <body>
     <div class="flexer">
