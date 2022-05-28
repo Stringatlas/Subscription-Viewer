@@ -9,9 +9,9 @@
     import { onMount } from "svelte";
     import {Subscription} from "$lib/subscriptions.js";
 
-    import { billingPlans, currencies, subscriptions} from "$lib/data/settingsData.js";
+    import { billingPlansIncrement, billingPlans, currencies, subscriptions, howToDisplayCost} from "$lib/data/settingsData.js";
     
-    let subscriptionType;
+    var subscriptionType = $billingPlans[0];
 
     $: convertedSubscriptions = convertSubscriptions($subscriptions);
     let totalCost = 0;
@@ -26,16 +26,65 @@
 
         return _convertedSubscriptions;
     }
-    let costs;
-    let displayCosts
+    let costs = {};
+    let displayCosts = [];
     // $: displayPrice = totalCost.toFixed(2);
+
     let displayPrice = 0;
+
     function CalculatePrices() {
-        displayCosts = []
-        costs = {};
+        if ($howToDisplayCost == "Separate") {
+            console.log("separate");
+            CalculatePricesSeparately();
+            return 0;
+        }
+        console.log("average")
+        CalculatePricesAverage();
+
+
+    }
+    function CalculatePricesAverage() {
+        const tempBillingPlans = $billingPlans;
+        let targetBillingPlanIndex = tempBillingPlans.indexOf(subscriptionType);
+        console.log(subscriptionType, tempBillingPlans);
         totalCost = 0;
         for (let subscription of $subscriptions) {
             let billingPlan = subscription.billing;
+            let billingPlanIndex  = tempBillingPlans.indexOf(billingPlan);
+            
+            var fromIndex = Math.min(targetBillingPlanIndex, billingPlanIndex);
+            var toIndex = Math.max(targetBillingPlanIndex, billingPlanIndex);
+
+            var multiplier = 1;
+
+            console.log(billingPlan, fromIndex, toIndex);
+
+            for (let i = fromIndex; i < toIndex; i++) {
+                console.log("multiplier ", multiplier)
+                multiplier *= parseFloat($billingPlansIncrement[i]);
+                console.log("parse", parseFloat($billingPlansIncrement[i]))
+            }
+
+            if (targetBillingPlanIndex < billingPlanIndex) {
+                totalCost += subscription.price / multiplier;
+            }
+            else
+            {
+                totalCost += subscription.price * multiplier;
+            }   
+        }
+        costs = {};
+        displayPrice = totalCost.toFixed(2);
+    }
+
+    function CalculatePricesSeparately() {
+        displayCosts = []
+        costs = {};
+        totalCost = 0;
+
+        for (let subscription of $subscriptions) {
+            let billingPlan = subscription.billing;
+
             if (billingPlan in costs){
                 costs[billingPlan] += parseFloat(subscription.price);
             } else {
@@ -48,13 +97,9 @@
 
         for (let key in costs){
             if (costs.hasOwnProperty(key)) {
-                console.log("ahah")
                 displayCosts.push(`\$${costs[key].toFixed(2)}/${key}`);
             }
         }
-
-        console.log(costs);
-        console.log(displayCosts);
     }
 
     function createSubscription() {
@@ -134,7 +179,7 @@
 <div class="topBar">
     <div class="flex-row">
         <h1 style="margin:0.5em">Total cost: ${displayPrice}</h1>
-        <DropDown bind:value={subscriptionType} items={$billingPlans} />
+        <DropDown bind:value={subscriptionType} items={$billingPlans} onChange={CalculatePrices}/>
     </div>
     
     <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" 

@@ -7,6 +7,8 @@ import {Subscription} from "$lib/subscriptions.js";
 let defaultBillingPlans = settings["billingPlans"];
 let defaultCurrencies = settings["currencies"];
 let defaultHowToDisplayCost = settings["howToDisplayCost"];
+let defaultBillingPlansIncrement = settings["billingPlansIncrement"];
+
 
 // only use if it is client
 const storedBillingPlans = (browser && 
@@ -15,6 +17,14 @@ const storedBillingPlans = (browser &&
 export const billingPlans = writable(storedBillingPlans);
 billingPlans.subscribe(
     (value) => browser && (localStorage.billingPlans = JSON.stringify(value))
+);
+
+const storedBillingPlansIncrement = (browser && 
+    JSON.parse(localStorage.getItem("billingPlansIncrement"))) || defaultBillingPlansIncrement;
+
+export const billingPlansIncrement = writable(storedBillingPlansIncrement);
+billingPlansIncrement.subscribe(
+    (value) => browser && (localStorage.billingPlansIncrement = JSON.stringify(value))
 );
 
 
@@ -37,3 +47,7 @@ subscriptions.subscribe(
 
 const storedHowToDisplayCost = (browser &&
     JSON.parse(localStorage.getItem("howToDisplayCost"))) || defaultHowToDisplayCost; // average, separate
+export const howToDisplayCost = writable(storedHowToDisplayCost);
+howToDisplayCost.subscribe(
+    (value) => browser && (localStorage.howToDisplayCost = JSON.stringify(value))
+);

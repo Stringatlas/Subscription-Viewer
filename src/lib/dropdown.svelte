@@ -1,12 +1,14 @@
 <script>
-  export let value = "Month";
+  export let value = "";
   export let items = [];
   export let buttonPadding = "1vmin";
   export let fontSize = "2.5vmin";
+  export let onChange = () => {};
 
   function changeValue(type){
     value = type;
-    console.log("changed subscription to type " + type)
+    console.log("changed subscription to type " + value)
+    onChange();
   }
 
 </script>

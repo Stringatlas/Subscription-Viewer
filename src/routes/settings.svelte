@@ -1,7 +1,7 @@
 <script>
     import DropDown from "$lib/dropdown.svelte";
     import { onMount } from "svelte";
-    import { billingPlans, currencies} from "$lib/data/settingsData.js";
+    import { billingPlans, billingPlansIncrement, currencies} from "$lib/data/settingsData.js";
     export let currency = "$ Dollar";
 
     import { settings } from "$lib/data/default.json";
@@ -103,6 +103,19 @@
         align-items: center;
         justify-content: center;
     }
+
+    .row-flexer {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .outline-black {
+        text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000; 
+    }
 </style>
 
 <div class="title">
@@ -173,9 +186,25 @@
     <button class="btn btn-success btn-settings inline-block" on:click={addNewBillingPlan}>Add New Billing Plan</button>
     <button class="btn btn-danger btn-settings inline-block" on:click={deleteLastBillingPlan}>Delete Last Billing Plan</button>
 
-    {#each $billingPlans as billingPlan}
-        <input class="billing-plan-input" type="text" bind:value={billingPlan}>
-    {/each}
+    <div class="inline-flexer">
+        <div>
+            {#each $billingPlans as billingPlan}
+                <input class="billing-plan-input" type="text" bind:value={billingPlan}>
+            {/each}
+        </div>
+
+        <div style="margin-top: 1.75vmin">
+
+            {#each $billingPlansIncrement as billingPlanIncrement}
+                <div class="row-flexer">
+                    <h3 style="color:white" class="outline-black">x</h3>
+                    <input class="billing-plan-input" type="text" bind:value={billingPlanIncrement}>
+                </div>
+
+            {/each}
+        </div>
+
+    </div>
 </div>
 
 <button class="btn btn-success" id="btn-save-settings" on:click={resetSettingsToDefault}>Reset To Default</button>
