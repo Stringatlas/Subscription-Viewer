@@ -8,6 +8,7 @@
     
     function addNewBillingPlan () {
 		$billingPlans = [...$billingPlans, "New billing plan"];
+        $billingPlansIncrement = [...$billingPlansIncrement, 1];
 	}
 	function deleteLastBillingPlan () {
 		$billingPlans = $billingPlans.slice(0, -1);
@@ -32,6 +33,7 @@
     function resetSettingsToDefault() {
         $billingPlans = settings.billingPlans;
         $currencies = settings.currencies;
+        $billingPlansIncrement = settings.billingPlansIncrement;
     }
 
 </script>

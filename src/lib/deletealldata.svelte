@@ -1,14 +1,13 @@
 <script>
     import Success from "$lib/successmodal.svelte";
-
+    import { subscriptions} from "$lib/data/settingsData.js";
     function deleteAllLocalStorage() {
-        alert("Delete all subscription data in localstorage (not done yet)")
+        $subscriptions = []
+        console.log("Deleted all subscription data");
     }
 </script>
 
 <Success class="confirmModal" />
-
-
 
 <div class="text-center transparent-background">
     <h3 class="header-that-says-data-in-localstorage">
