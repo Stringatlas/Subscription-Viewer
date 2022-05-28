@@ -1,11 +1,11 @@
 <script>
     import DropDown from "$lib/dropdown.svelte";
     import { onMount } from "svelte";
-    import { billingPlans, billingPlansIncrement, currencies} from "$lib/data/settingsData.js";
+    import { howToDisplayCost, billingPlans, billingPlansIncrement, currencies} from "$lib/data/settingsData.js";
     export let currency = "$ Dollar";
 
     import { settings } from "$lib/data/default.json";
-
+    
     function addNewBillingPlan () {
 		$billingPlans = [...$billingPlans, "New billing plan"];
 	}
@@ -150,13 +150,13 @@
     <h5>(Used in Analytics and Total costs display)</h5>
     
     <div class="form-check inline-block radio-element">
-        <input class="form-check-input" type="radio" name="AveragePriceRadio" id="flexRadioDefault1">
+        <input class="form-check-input" type="radio" bind:group={$howToDisplayCost} name="AveragePriceRadio" id="flexRadioDefault1" value="Average">
         <label class="form-check-label" for="flexRadioDefault1">
             Average Costs
         </label>
       
         <div class="">
-            <input class="form-check-input" type="radio" name="AveragePriceRadio" id="flexRadioDefault2" checked>
+            <input class="form-check-input" type="radio" bind:group={$howToDisplayCost} name="AveragePriceRadio" id="flexRadioDefault2" value="Separate">
             <label class="form-check-label" for="flexRadioDefault2">
                 Display Separate Costs
             </label>

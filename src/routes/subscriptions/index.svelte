@@ -57,12 +57,8 @@
 
             var multiplier = 1;
 
-            console.log(billingPlan, fromIndex, toIndex);
-
             for (let i = fromIndex; i < toIndex; i++) {
-                console.log("multiplier ", multiplier)
                 multiplier *= parseFloat($billingPlansIncrement[i]);
-                console.log("parse", parseFloat($billingPlansIncrement[i]))
             }
 
             if (targetBillingPlanIndex < billingPlanIndex) {
@@ -177,22 +173,27 @@
 </style>
 
 <div class="topBar">
-    <div class="flex-row">
-        <h1 style="margin:0.5em">Total cost: ${displayPrice}</h1>
-        <DropDown bind:value={subscriptionType} items={$billingPlans} onChange={CalculatePrices}/>
+    {#if $howToDisplayCost == "Average"}
+        <div class="flex-row">
+            <h1 style="margin:0.5em">Total cost: ${displayPrice}</h1>
+            <DropDown bind:value={subscriptionType} items={$billingPlans} onChange={CalculatePrices}/>
+        </div>
+    {/if}
+    <div class="flex-column">
+        {#if $howToDisplayCost == "Separate"}
+            {#each displayCosts as displayCost}
+                <h1>{displayCost}</h1>
+            {/each}
+        {/if}
     </div>
-    
+
     <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" 
     height="12.5vmin" width="12.5vmin" fill="currentColor" viewBox="0 0 16 16" on:click={createSubscription}>
         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
     </svg>
 </div>
 
-<div class="flex-column">
-    {#each displayCosts as displayCost}
-        <h1>{displayCost}</h1>
-    {/each}
-</div>
+
 
 <body>
     <div class="flexer">
