@@ -34,20 +34,17 @@
 
     function CalculatePrices() {
         if ($howToDisplayCost == "Separate") {
-            console.log("separate");
             CalculatePricesSeparately();
             return 0;
         }
-        console.log("average")
+
         CalculatePricesAverage();
-
-
     }
     function CalculatePricesAverage() {
         const tempBillingPlans = $billingPlans;
         let targetBillingPlanIndex = tempBillingPlans.indexOf(subscriptionType);
-        console.log(subscriptionType, tempBillingPlans);
         totalCost = 0;
+        
         for (let subscription of $subscriptions) {
             let billingPlan = subscription.billing;
             let billingPlanIndex  = tempBillingPlans.indexOf(billingPlan);

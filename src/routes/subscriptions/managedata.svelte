@@ -1,5 +1,7 @@
 <script>
     import DeleteData from "$lib/deletealldata.svelte";
-</script>
+    import EditSubscriptions from "$lib/editSubscriptions.svelte";
 
+</script>
+<EditSubscriptions />
 <DeleteData />

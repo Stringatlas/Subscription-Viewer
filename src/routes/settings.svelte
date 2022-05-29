@@ -12,6 +12,7 @@
 	}
 	function deleteLastBillingPlan () {
 		$billingPlans = $billingPlans.slice(0, -1);
+        $billingPlansIncrement = $billingPlansIncrement.slice(0, -1);
 	}
 
     function addNewCurrency () {
@@ -37,8 +38,6 @@
     }
 
 </script>
-<p>{JSON.stringify($billingPlans)}</p>
-<p>{JSON.stringify($currencies)}</p>
 
 <style lang=scss>
     $side-margin: 1.5vmin;
