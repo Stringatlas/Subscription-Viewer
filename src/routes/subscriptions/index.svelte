@@ -41,13 +41,15 @@
         CalculatePricesAverage();
     }
     function CalculatePricesAverage() {
-        const tempBillingPlans = $billingPlans;
-        let targetBillingPlanIndex = tempBillingPlans.indexOf(subscriptionType);
+        var tempBillingPlans = $billingPlans;
+        tempBillingPlans = lowerCase(tempBillingPlans);
+        console.log(tempBillingPlans);
+        let targetBillingPlanIndex = tempBillingPlans.indexOf(subscriptionType.toLowerCase());
         totalCost = 0;
-        
+
         for (let subscription of $subscriptions) {
             let billingPlan = subscription.billing;
-            let billingPlanIndex  = tempBillingPlans.indexOf(billingPlan);
+            let billingPlanIndex  = tempBillingPlans.indexOf(billingPlan.toLowerCase());
             
             var fromIndex = Math.min(targetBillingPlanIndex, billingPlanIndex);
             var toIndex = Math.max(targetBillingPlanIndex, billingPlanIndex);
@@ -101,6 +103,13 @@
         CalculatePrices();
     }
 
+    function lowerCase(array) {
+        for (let i=0; i<array.length; i++) {
+            array[i] = array[i].toLowerCase();
+        }
+
+        return array;
+    }
     CalculatePrices();
 </script>
 

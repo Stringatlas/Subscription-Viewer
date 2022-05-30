@@ -7,7 +7,6 @@
 
   function changeValue(type){
     value = type;
-    console.log("changed subscription to type " + value)
     onChange();
   }
 
