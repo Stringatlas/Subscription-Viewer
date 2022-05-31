@@ -1,5 +1,5 @@
 <script>
-    import { billingPlans, currencies, subscriptions} from "$lib/data/settingsData.js";
+    import { billingPlans, currencies, subscriptions, defaultCurrency} from "$lib/data/settingsData.js";
     import DropDown from "$lib/dropdown.svelte";
     import { onMount } from "svelte";
     import { browser } from "$app/env"
@@ -19,6 +19,8 @@
 
     function createSubscription() {
         var subscription = new Subscription();
+        subscription.currency = $defaultCurrency;
+        console.log($defaultCurrency);
         $subscriptions = [...$subscriptions, subscription];
     }
 

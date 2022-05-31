@@ -99,6 +99,7 @@
 
     function createSubscription() {
         var subscription = new Subscription();
+        subscription.currency = $defaultCurrency;
         $subscriptions = [...$subscriptions, subscription];
         CalculatePrices();
     }
