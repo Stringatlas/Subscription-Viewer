@@ -51,3 +51,4 @@ export const howToDisplayCost = writable(storedHowToDisplayCost);
 howToDisplayCost.subscribe(
     (value) => browser && (localStorage.howToDisplayCost = JSON.stringify(value))
 );
+

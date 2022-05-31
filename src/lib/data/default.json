@@ -3,8 +3,7 @@
         "displayPrices": "average",
         "billingPlans": ["day", "week", "month", "year"],
         "billingPlansIncrement": [7, 4.34812142857, 12],
-        "currency": "$ dollar",
-        "symbolCurrency": "$",
+        "currency": "$ USD",
         "currencies": ["$ USD", "$ CAD", "£ Pound", "€ Euro", "¥ Yuan", "¥ Yen", "₹ Rupee"],
         "howToDisplayCost": "Average", 
         "howToDisplayCurrency": "Convert"

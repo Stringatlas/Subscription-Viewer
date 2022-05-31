@@ -2,8 +2,6 @@
     import Actions from "$lib/subscriptionactions.svelte"
 </script>
 
-<Actions />
-
 <style lang=scss>
     $transition-time: 0.5s;
     $scale-up: 1.025;
@@ -84,7 +82,13 @@
     p {
         font-size: 1.5vw;
     }
+
+    #title {
+        margin: 0.25em;
+    }
 </style>
+
+<!-- <Actions />
 
 <div class="flexer">
     <div class="element element-flex">
@@ -97,4 +101,12 @@
             <p><b>Description:</b> blah labtlawe paweothawioe hpaweoth awoe thawetophaweoit hawep oahw towepto iwpoeiwheqo thweqio thweqoit hiweqht iewoqh twoqhp toiweqth </p>
         </div>
     </div>
-</div>
+</div> -->
+
+<h1 id="title">How To Use Subscription Viewer</h1>
+<ol>
+    <li>Add your subscriptions in Manage Data in Subscriptions in the Navbar</li>
+    <li>View your subscriptions and find out about pricing in View Subscriptions in Subscriptions in the Navbar</li>
+    <li>Adjust Settings in Settings</li>
+    <p>*<em>Average Costs</em> find the average cost for each billing period, while <em>Display Separate Costs</em> displays the costs separately by billing period</p>
+</ol>
