@@ -110,3 +110,5 @@
     <li>Adjust Settings in Settings</li>
     <p>*<em>Average Costs</em> find the average cost for each billing period, while <em>Display Separate Costs</em> displays the costs separately by billing period</p>
 </ol>
+
+<p>Currency conversion, image upload, and analytics page coming soon</p>

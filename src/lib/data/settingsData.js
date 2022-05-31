@@ -8,7 +8,7 @@ let defaultBillingPlans = settings["billingPlans"];
 let defaultCurrencies = settings["currencies"];
 let defaultHowToDisplayCost = settings["howToDisplayCost"];
 let defaultBillingPlansIncrement = settings["billingPlansIncrement"];
-
+let settingsDefaultCurrency = settings["currency"];
 
 // only use if it is client
 const storedBillingPlans = (browser && 
@@ -52,3 +52,9 @@ howToDisplayCost.subscribe(
     (value) => browser && (localStorage.howToDisplayCost = JSON.stringify(value))
 );
 
+const storedDefaultCurrency = (browser &&
+    JSON.parse(localStorage.getItem("defaultCurrency"))) || settingsDefaultCurrency;
+export const defaultCurrency = writable(storedDefaultCurrency);
+defaultCurrency.subscribe(
+    (value) => browser && (localStorage.defaultCurrency = JSON.stringify(value))
+);

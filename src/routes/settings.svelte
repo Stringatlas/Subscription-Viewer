@@ -1,7 +1,7 @@
 <script>
     import DropDown from "$lib/dropdown.svelte";
     import { onMount } from "svelte";
-    import { howToDisplayCost, billingPlans, billingPlansIncrement, currencies} from "$lib/data/settingsData.js";
+    import { howToDisplayCost, billingPlans, billingPlansIncrement, currencies, defaultCurrency} from "$lib/data/settingsData.js";
     export let currency = "$ Dollar";
 
     import { settings } from "$lib/data/default.json";
@@ -129,10 +129,10 @@
 
 <div class="settings-section">
     <h1 class="inline-block">
-        Currency:  
+        Default Currency:  
     </h1>
     <div class="inline-block">
-        <DropDown items={$currencies} fontSize="1.75vmin"/>
+        <DropDown items={$currencies} bind:value={$defaultCurrency} fontSize="1.75vmin"/>
     </div>
 </div>
 
@@ -169,7 +169,6 @@
         <label class="form-check-label" for="flexRadioDefault3">
             <div class="inline-flexer">
                 Convert Currencies
-                <DropDown items={$currencies} fontSize="1.75vmin"/>
             </div>
 
         </label>

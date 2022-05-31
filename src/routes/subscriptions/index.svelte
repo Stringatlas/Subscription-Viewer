@@ -9,7 +9,7 @@
     import { onMount } from "svelte";
     import {Subscription} from "$lib/subscriptions.js";
 
-    import { billingPlansIncrement, billingPlans, currencies, subscriptions, howToDisplayCost} from "$lib/data/settingsData.js";
+    import { billingPlansIncrement, billingPlans, currencies, subscriptions, howToDisplayCost, defaultCurrency} from "$lib/data/settingsData.js";
     
     var subscriptionType = $billingPlans[0];
 
@@ -19,7 +19,7 @@
         let _convertedSubscriptions = [];
 
         for (let subscription of subscriptions) {
-            _convertedSubscriptions.push(new Subscription(subscription.name, subscription.price, 
+            _convertedSubscriptions.push(new Subscription(subscription.name, subscription.price, subscription.currency,
             subscription.billing, subscription.description, subscription.link, 
             subscription.image));
         }
@@ -92,7 +92,7 @@
 
         for (let key in costs){
             if (costs.hasOwnProperty(key)) {
-                displayCosts.push(`\$${costs[key].toFixed(2)}/${key}`);
+                displayCosts.push(`${$defaultCurrency[0]}${costs[key].toFixed(2)}/${key}`);
             }
         }
     }
@@ -181,7 +181,7 @@
 <div class="topBar">
     {#if $howToDisplayCost == "Average"}
         <div class="flex-row">
-            <h1 style="margin:0.5em">Total cost: ${displayPrice}</h1>
+            <h1 style="margin:0.5em">Total cost: {$defaultCurrency[0]}{displayPrice}</h1>
             <DropDown bind:value={subscriptionType} items={$billingPlans} onChange={CalculatePrices}/>
         </div>
     {/if}
