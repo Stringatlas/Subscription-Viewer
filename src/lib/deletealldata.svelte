@@ -11,7 +11,7 @@
 
 <div class="text-center transparent-background">
     <h3 class="header-that-says-data-in-localstorage">
-        All subscription data is stored in Localstorage
+        All subscription data is stored in Locally
     </h3>
     <button
         class="btn btn-danger delete-info"
