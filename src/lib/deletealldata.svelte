@@ -7,7 +7,7 @@
     }
 </script>
 
-<Success class="confirmModal" />
+<Success />
 
 <div class="text-center transparent-background">
     <h3 class="header-that-says-data-in-localstorage">

@@ -5,6 +5,9 @@
     import { browser } from "$app/env"
     import { Subscription } from "$lib/subscriptions.js";
 
+    let fileInput;
+    let showImage = false;
+
     function DeleteSubscription(index) {
         $subscriptions.splice(index, 1);
         $subscriptions = $subscriptions;
@@ -22,6 +25,29 @@
         subscription.currency = $defaultCurrency;
         console.log($defaultCurrency);
         $subscriptions = [...$subscriptions, subscription];
+    }
+
+    function UploadImage(e) {
+        console.log("hello")
+
+		const file = e.target.files[0];
+        if (file) {
+            console.log("isfile")
+            showImage = true;
+
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                const imagePreview = e.target.nextElementSibling;
+                imagePreview.setAttribute("src", reader.result);
+            });
+
+            reader.readAsDataURL(file); 
+
+            return;
+        } 
+
+        showImage = false; 
     }
 
 </script>
@@ -84,6 +110,9 @@
         border-color: #beb0a8;
     }
 
+    .image-preview {
+        max-width: 100%;
+    }
 </style>
 
 <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" 
@@ -118,23 +147,30 @@ height="7vmin" width="7vmin" fill="currentColor" viewBox="0 0 16 16" on:click={c
                 <div class="billing-section element-section">
                     <p class="inline-block">Billing: </p>
                     <div class="inline-block">
-                        <DropDown class="drop-down" items={$billingPlans} bind:value={subscription.billing} fontSize="1.5vmin"/>
+                        <DropDown items={$billingPlans} bind:value={subscription.billing} fontSize="1.5vmin"/>
                     </div>
                 </div>
     
                 <div class="currency-section element-section">
                     <p class="inline-block">Currency: </p>
                     <div class="inline-block">
-                        <DropDown class="drop-down" items={$currencies} bind:value={subscription.currency} fontSize="1.5vmin"/>
+                        <DropDown items={$currencies} bind:value={subscription.currency} fontSize="1.5vmin"/>
                     </div>
                 </div>
                 
                 <div class="element-section">
                     <p class="inline-block">Image: </p>
                     <div class="mb-3">
-                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                        <input class="form-control form-control-sm" type="file" accept="image/*" on:change={UploadImage} bind:this={fileInput}>
+                        {#if showImage}
+                            <img class="image-preview" src="" alt="">
+                        {:else}
+                            <span>Image Preview</span>
+                        {/if}
                     </div>
                 </div>
+                 
+
             </div>
             <div class="">
                 <button class="btn btn-danger btn-settings inline-block" on:click={() => {DeleteSubscription(i)} }>

@@ -11,6 +11,7 @@
 
     "defaultSubscriptions": [
         {
+            "id": 0,
             "name": "Netflix",
             "price": 9.99,
             "currency": "$ USD",
@@ -20,6 +21,7 @@
             "image": "/netflix.png"
         },
         {
+            "id": 1,
             "name": "Costco Membership",
             "price": 60,
             "currency": "$ USD",
@@ -29,6 +31,7 @@
             "image": "/costco.png"
         },
         {
+            "id": 2,
             "name": "Amazon Prime",
             "price": 14.99,
             "currency": "$ USD",

@@ -5,11 +5,10 @@
 <script>
     import SubscriptionCard from "$lib/subscription.svelte";
     import DropDown from "$lib/dropdown.svelte";
-    import SubscriptionEditCard from "$lib/subscriptionedit.svelte";
     import { onMount } from "svelte";
     import {Subscription} from "$lib/subscriptions.js";
 
-    import { billingPlansIncrement, billingPlans, currencies, subscriptions, howToDisplayCost, defaultCurrency} from "$lib/data/settingsData.js";
+    import { billingPlansIncrement, billingPlans, currencies, subscriptions, howToDisplayCost, defaultCurrency, currentAvailableID} from "$lib/data/settingsData.js";
     
     var subscriptionType = $billingPlans[0];
 
@@ -19,7 +18,7 @@
         let _convertedSubscriptions = [];
 
         for (let subscription of subscriptions) {
-            _convertedSubscriptions.push(new Subscription(subscription.name, subscription.price, subscription.currency,
+            _convertedSubscriptions.push(new Subscription(subscription.id, subscription.name, subscription.price, subscription.currency,
             subscription.billing, subscription.description, subscription.link, 
             subscription.image));
         }
@@ -28,6 +27,8 @@
     }
     let costs = {};
     let displayCosts = [];
+    let subscriptionObjects = [];
+
     // $: displayPrice = totalCost.toFixed(2);
 
     let displayPrice = 0;
@@ -43,7 +44,6 @@
     function CalculatePricesAverage() {
         var tempBillingPlans = $billingPlans;
         tempBillingPlans = lowerCase(tempBillingPlans);
-        console.log(tempBillingPlans);
         let targetBillingPlanIndex = tempBillingPlans.indexOf(subscriptionType.toLowerCase());
         totalCost = 0;
 
@@ -83,7 +83,7 @@
             if (billingPlan in costs){
                 costs[billingPlan] += parseFloat(subscription.price);
             } else {
-                costs[billingPlan] = parseFloat(subscription.price);
+                costs[billingPlan] = parseFloat(subscription.price);  
             }
 
             totalCost += subscription.price;
@@ -100,8 +100,19 @@
     function createSubscription() {
         var subscription = new Subscription();
         subscription.currency = $defaultCurrency;
+        subscription.id = $currentAvailableID
+        $currentAvailableID = $currentAvailableID + 1;
+
         $subscriptions = [...$subscriptions, subscription];
+
         CalculatePrices();
+        if (subscriptionObjects.length > 0) {
+            let obj = subscriptionObjects[subscriptionObjects.length - 1];
+            obj.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
     }
 
     function lowerCase(array) {
@@ -177,6 +188,10 @@
     h1 {
         font-size: 6vw;
     }
+
+    .parent {
+        width: 100%;
+    }
 </style>
 
 <div class="topBar">
@@ -200,13 +215,14 @@
     </svg>
 </div>
 
-
-
 <body>
     <div class="flexer">
         <!-- <SubscriptionEditCard subscription={convertSubscriptions[0]}/> -->
-        {#each convertedSubscriptions as subscription}
-            <SubscriptionCard bind:subscription={subscription} />
+        {#each convertedSubscriptions as subscription, i}
+            <div class="parent" bind:this={subscriptionObjects[i]}>
+                <SubscriptionCard bind:subscription={subscription}/>
+            </div>
+ 
         {/each}
     </div>
 </body>
