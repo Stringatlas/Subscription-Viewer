@@ -106,13 +106,6 @@
         $subscriptions = [...$subscriptions, subscription];
 
         CalculatePrices();
-        if (subscriptionObjects.length > 0) {
-            let obj = subscriptionObjects[subscriptionObjects.length - 1];
-            obj.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-
     }
 
     function lowerCase(array) {
@@ -222,7 +215,10 @@
             <div class="parent" bind:this={subscriptionObjects[i]}>
                 <SubscriptionCard bind:subscription={subscription}/>
             </div>
- 
+
+            {#if (i == subscriptionObjects.length - 1)}
+                {subscriptionObjects[subscriptionObjects.length - 1].scrollIntoView({behavior:'smooth'})}
+            {/if}
         {/each}
     </div>
 </body>

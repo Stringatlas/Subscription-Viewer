@@ -1,5 +1,5 @@
 <script>
-    import { billingPlans, currencies, subscriptions, defaultCurrency} from "$lib/data/settingsData.js";
+    import { billingPlans, currencies, subscriptions, defaultCurrency, currentAvailableID} from "$lib/data/settingsData.js";
     import DropDown from "$lib/dropdown.svelte";
     import { onMount } from "svelte";
     import { browser } from "$app/env"
@@ -7,6 +7,7 @@
 
     let fileInput;
     let showImage = false;
+    let subscriptionObjects = [];
 
     function DeleteSubscription(index) {
         $subscriptions.splice(index, 1);
@@ -20,28 +21,41 @@
 
     });
 
-    function createSubscription() {
+    function _createSubscription() {
         var subscription = new Subscription();
         subscription.currency = $defaultCurrency;
-        console.log($defaultCurrency);
+        subscription.id = $currentAvailableID
+        $currentAvailableID = $currentAvailableID + 1;
+
         $subscriptions = [...$subscriptions, subscription];
+
+        if (subscriptionObjects.length > 0) {
+            let obj = subscriptionObjects[subscriptionObjects.length - 1];
+            obj.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     }
 
+    let link;
     function UploadImage(e) {
-        console.log("hello")
-
 		const file = e.target.files[0];
+
         if (file) {
-            console.log("isfile")
+            var blobUrl = URL.createObjectURL(file);
+            console.log(blobUrl);
             showImage = true;
 
             const reader = new FileReader();
 
             reader.addEventListener("load", function () {
+                console.log(e.target.parentNode.childNodes);
                 const imagePreview = e.target.nextElementSibling;
                 imagePreview.setAttribute("src", reader.result);
-            });
 
+                link.href = blobUrl;
+            });
+        
             reader.readAsDataURL(file); 
 
             return;
@@ -116,13 +130,13 @@
 </style>
 
 <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" 
-height="7vmin" width="7vmin" fill="currentColor" viewBox="0 0 16 16" on:click={createSubscription}>
+height="7vmin" width="7vmin" fill="currentColor" viewBox="0 0 16 16" on:click={_createSubscription}>
     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 </svg>
 
 {#if $subscriptions instanceof Array }
     {#each $subscriptions as subscription, i}
-        <div class="subscription-section inline-block">
+        <div class="subscription-section inline-block" bind:this={subscriptionObjects[i]}>
             <div class="">
                 <div class="element-section name-section">
                     <p class="inline-block">Name: </p>
@@ -164,6 +178,7 @@ height="7vmin" width="7vmin" fill="currentColor" viewBox="0 0 16 16" on:click={c
                         <input class="form-control form-control-sm" type="file" accept="image/*" on:change={UploadImage} bind:this={fileInput}>
                         {#if showImage}
                             <img class="image-preview" src="" alt="">
+                            <a href="" bind:this={link}>Image Link</a>
                         {:else}
                             <span>Image Preview</span>
                         {/if}
@@ -178,6 +193,9 @@ height="7vmin" width="7vmin" fill="currentColor" viewBox="0 0 16 16" on:click={c
                 </button>
             </div>
         </div>
-
+        
+        {#if (i == subscriptionObjects.length - 1)}
+            {subscriptionObjects[subscriptionObjects.length - 1].scrollIntoView({behavior:'smooth'})}
+        {/if}
     {/each}
 {/if}

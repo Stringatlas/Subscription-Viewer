@@ -10,7 +10,7 @@
     }
 </script>
 
-<button class="btn" on:click={scrollToDelete}>Delete all subscriptions</button>
+<button class="btn btn-primary" on:click={scrollToDelete}>Delete all subscriptions</button>
 <EditSubscriptions />
 
 <div id="go" bind:this={deleteDiv}>
