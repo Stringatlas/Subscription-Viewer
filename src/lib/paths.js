@@ -1,0 +1,10 @@
+export let path_localStore = "$lib/data/localStore.js";
+export let path_dropDown = "$lib/components/dropdown.svelte";
+export let path_barChart = "$lib/components/barchart.svelte";
+export let path_PieChart = "$lib/components/piechart.svelte";
+export let path_defaultSettings = "$lib/data/default.json";
+export let path_successmodal = "$lib/components/successmodal.svelte";
+export let path_deletealldata = "$lib/single-use/deletealldata.svelte";
+export let path_navbar = "$lib/components/navbar.svelte";
+export let path_editSubscriptions = "$lib/single-use/editSubscriptions.svelte";
+export let path_subscription = "$lib/components/subscription.svelte";

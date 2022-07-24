@@ -1,6 +1,6 @@
 <script>
-    import Success from "$lib/successmodal.svelte";
-    import { subscriptions} from "$lib/data/settingsData.js";
+    import Success from "$lib/components/successmodal.svelte";
+    import { subscriptions} from "$lib/data/localStore.js";
     function deleteAllLocalStorage() {
         $subscriptions = []
         console.log("Deleted all subscription data");

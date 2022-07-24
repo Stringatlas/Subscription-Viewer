@@ -1,6 +1,6 @@
 <script>
-    import Barchart from "$lib/barchart.svelte";
-    import PieChart from "$lib/piechart.svelte";
+    import Barchart from "$lib/components/barchart.svelte";
+    import PieChart from "$lib/components/piechart.svelte";
 </script>
 
 <style>

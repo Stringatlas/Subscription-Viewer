@@ -1,7 +1,7 @@
 <script>
-    import DropDown from "$lib/dropdown.svelte";
+    import DropDown from "$lib/components/dropdown.svelte";
     import { onMount } from "svelte";
-    import { howToDisplayCost, billingPlans, billingPlansIncrement, currencies, defaultCurrency} from "$lib/data/settingsData.js";
+    import { howToDisplayCost, billingPlans, billingPlansIncrement, currencies, defaultCurrency} from "$lib/data/localStore.js";
     export let currency = "$ Dollar";
 
     import { settings } from "$lib/data/default.json";

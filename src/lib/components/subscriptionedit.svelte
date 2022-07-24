@@ -1,9 +1,9 @@
 <script>
-    import {Subscription} from "$lib/subscriptions.js";
-
     export let subscription;
 
+    export let image = "/default.jpg";
     import Actions from "$lib/subscriptionactions.svelte";
+    import DropDown from "$lib/components/dropdown.svelte";
     // import { createEventDispatcher } from 'svelte';
 </script>
 
@@ -55,19 +55,12 @@
         min-width: 20vw;
         max-width: 40vw;
 
-        max-height: 30vh;
         width:100%;
-
         object-fit: contain;
 
-        width:100%;
-
-        border-radius: $border-radius;
-    }
-
-    #img-div {
+        max-height: 30vh;
         margin: $img-margin;
-        background-color: none;
+        border-radius: $border-radius;
     }
 
 
@@ -84,7 +77,7 @@
         margin: 1%;
         align-self: center;
     }
-    h1 {
+    .input {
         font-size: 5vw;
     }
     p {
@@ -96,33 +89,31 @@
     .subscription-name {
         margin-left: 3%;
     }
-
-    #left-side {
-        display: flexbox;
-        flex-direction: column;
-        align-content: center;
-    }
 </style>
 
 <div class="element element-flex">
-    <div id="left-side">
-        <div id="img-div">
-            <img src={subscription.image} alt="subscription-icon">
-        </div>
-        <!-- <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer">Redirect </a> -->
+    <div>
+        <img src={image} alt="subscription-icon">
     </div>
 
-
     <div class="text-center subscription-name resize highlight">
-        <h1 href={subscription.link}>{subscription.name}</h1>
-        <h1>{subscription.currency[0]}{subscription.price}/{subscription.billing}</h1>
+
+        <div id="subscription-name input name-input">
+            <input type="text" placeholder="Subscription Name" value={subscription.name}>
+        </div>
+
+        <div id="billing inline-block">
+            <input class="input inline-block" type="text" placeholder="price"> 
+            <h1 class="inline-block">/</h1>
+            <div id="drop-down-parent" class="inline-block">
+                <DropDown class="drop-down"/>
+            </div>
+
+        </div>
     </div>
 
     <div class="resize highlight description">
-        {#if subscription.description != ""}
-            {#if subscription.description != null && subscription.description != undefined}
-                <p><b>Description: </b>{subscription.description}</p>
-            {/if}
-        {/if}
+        <p><b>Description: </b>{subscription.description}</p>
+
     </div>
 </div>

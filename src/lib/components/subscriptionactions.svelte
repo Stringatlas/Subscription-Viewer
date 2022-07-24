@@ -2,7 +2,7 @@
 <script>
   let subscriptionType = "Month";
 
-  import DropDown from "$lib/dropdown.svelte";
+  import DropDown from "$lib/components/dropdown.svelte";
   
 </script>
 

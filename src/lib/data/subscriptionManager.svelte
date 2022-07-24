@@ -2,10 +2,8 @@
 
 </script>
 
+
 <script>
-    import SubscriptionCard from "$lib/components/subscription.svelte";
-    import DropDown from "$lib/components/dropdown.svelte";
-    import { onMount } from "svelte";
     import {Subscription} from "$lib/subscriptions.js";
     import { billingPlansIncrement, billingPlans, currencies, subscriptions, howToDisplayCost, defaultCurrency, currentAvailableID} from "$lib/data/localStore.js";
     
@@ -40,6 +38,7 @@
 
         CalculatePricesAverage();
     }
+    
     function CalculatePricesAverage() {
         var tempBillingPlans = $billingPlans;
         tempBillingPlans = lowerCase(tempBillingPlans);
@@ -116,110 +115,3 @@
     }
     CalculatePrices();
 </script>
-
-<style lang=scss>
-    .flexer {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        flex-wrap: nowrap;
-        flex: 1;
-    }
-
-    body {
-        background-color: rgb(142, 154, 164);
-    }
-
-    $add-subscription-transition-time: 0.2s;
-
-    .add-subscription-btn {
-        background-color: rgba($color: #8A5E44, $alpha: 1);
-        border-radius: 50%;
-        text-align: center;
-        color: #beb0a8;
-        transition: background-color $add-subscription-transition-time;
-
-        // border-style: solid;
-        // border-color: #beb0a8;
-    }
-
-    .add-subscription-btn:hover {
-        background-color: rgba($color: #BA7C59, $alpha: 1);
-        transition: background-color $add-subscription-transition-time;
-    }
-
-    .add-subscription-btn:focus {
-        outline-style: solid;
-        border-style: solid;
-        border-color: #beb0a8;
-    }
-
-    .topBar {
-        margin-top: 10px;
-        margin-left: 1%;
-        margin-right: 1%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-    }
-
-    .flex-row {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-    }
-
-    .flex-column {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-    }
-    h1 {
-        font-size: 6vw;
-    }
-
-    .parent {
-        width: 100%;
-    }
-</style>
-
-<div class="topBar">
-    {#if $howToDisplayCost == "Average"}
-        <div class="flex-row">
-            <h1 style="margin:0.5em">Total cost: {$defaultCurrency[0]}{displayPrice}</h1>
-            <DropDown bind:value={subscriptionType} items={$billingPlans} onChange={CalculatePrices}/>
-        </div>
-    {/if}
-    <div class="flex-column">
-        {#if $howToDisplayCost == "Separate"}
-            {#each displayCosts as displayCost}
-                <h1>{displayCost}</h1>
-            {/each}
-        {/if}
-    </div>
-
-    <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" 
-    height="12.5vmin" width="12.5vmin" fill="currentColor" viewBox="0 0 16 16" on:click={createSubscription}>
-        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-    </svg>
-</div>
-
-<body>
-    <div class="flexer">
-        {#if convertedSubscriptions instanceof Array}
-            {#each convertedSubscriptions as subscription, i}
-                <div class="parent" bind:this={subscriptionObjects[i]}>
-                    <SubscriptionCard bind:subscription={subscription}/>
-                </div>
-
-                {#if (i == subscriptionObjects.length - 1)}
-                    <span hidden>{subscriptionObjects[subscriptionObjects.length - 1].scrollIntoView({behavior:'smooth'})}</span>
-                {/if}
-            {/each}
-        {/if}
-    </div>
-</body>
-

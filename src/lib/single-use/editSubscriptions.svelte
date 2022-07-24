@@ -1,6 +1,6 @@
 <script>
-    import { billingPlans, currencies, subscriptions, defaultCurrency, currentAvailableID} from "$lib/data/settingsData.js";
-    import DropDown from "$lib/dropdown.svelte";
+    import { billingPlans, currencies, subscriptions, defaultCurrency, currentAvailableID} from "$lib/data/localStore.js";
+    import DropDown from "$lib/components/dropdown.svelte";
     import { onMount } from "svelte";
     import { browser } from "$app/env"
     import { Subscription } from "$lib/subscriptions.js";
@@ -145,7 +145,10 @@ height="7vmin" width="7vmin" fill="currentColor" viewBox="0 0 16 16" on:click={_
             
                 <div class="element-section">
                     <p class="inline-block">Cost: </p>
-                    <input class="inline-block" type="text" bind:value={subscription.price}>
+                    <input class="inline-block" type="text" value={String(subscription.price).replace(/[^\d.]/g, '')} on:input={(e) => {
+                        subscription.price = String(e.target.value).replace(/[^\d.]/g, '');
+                        console.log(typeof(subscription.price));
+                        }}>
                 </div>
     
                 <div class="element-section">
@@ -195,7 +198,7 @@ height="7vmin" width="7vmin" fill="currentColor" viewBox="0 0 16 16" on:click={_
         </div>
         
         {#if (i == subscriptionObjects.length - 1)}
-            {subscriptionObjects[subscriptionObjects.length - 1].scrollIntoView({behavior:'smooth'})}
+            <span hidden>{subscriptionObjects[subscriptionObjects.length - 1].scrollIntoView({behavior:'smooth'})}</span>
         {/if}
     {/each}
 {/if}

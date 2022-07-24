@@ -1,6 +1,6 @@
 <script>
-    import DeleteData from "$lib/deletealldata.svelte";
-    import EditSubscriptions from "$lib/editSubscriptions.svelte";
+    import DeleteData from "$lib/single-use/deletealldata.svelte";
+    import EditSubscriptions from "$lib/single-use/editSubscriptions.svelte";
     let deleteDiv;
 
     function scrollToDelete() {

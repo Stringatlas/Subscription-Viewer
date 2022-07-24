@@ -1,6 +1,6 @@
 <script>
-    import Actions from "$lib/subscriptionactions.svelte";
-    import "$lib/data/imageManager.js";
+    import Actions from "$lib/components/subscriptionactions.svelte";
+    import "$lib/data/localIndexedDB";
 </script>
 
 <style lang=scss>
