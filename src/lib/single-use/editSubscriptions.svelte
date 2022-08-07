@@ -2,24 +2,49 @@
     import { billingPlans, currencies, subscriptions, defaultCurrency, currentAvailableID} from "$lib/data/localStore.js";
     import DropDown from "$lib/components/dropdown.svelte";
     import { onMount } from "svelte";
-    import { browser } from "$app/env"
+    import { browser } from "$app/env";
     import { Subscription } from "$lib/subscriptions.js";
+    import { AccessDB, storeImage,  getImage, getAllImages }from "$lib/data/localIndexedDB.js";
+    
+    onMount(() => {
+		GetImagesIndexedDB();
+	});
 
     let fileInput;
     let showImage = false;
     let subscriptionObjects = [];
 
+    let dbObject = {"value": []};
+
+    $: dbImages = onDBChange(dbObject);
+    let images = {};
+
+    function onDBChange(object) {
+        $subscriptions = $subscriptions;
+        dbObject.value = object.value;
+        return object.value;
+    }
+
+    async function GetImagesIndexedDB() {
+        if (browser) {
+            let ids = [];
+            for (let i=0; i < $subscriptions.length; i++) {
+                ids.push($subscriptions[i].id);
+            }
+            images = await getAllImages(ids);
+            console.log("IMAGESS", JSON.stringify(images));
+        }
+        else {
+            console.log("IN SSR");
+        }
+
+        
+    }
+
     function DeleteSubscription(index) {
         $subscriptions.splice(index, 1);
         $subscriptions = $subscriptions;
     }
-
-    onMount(() => {
-        if (browser) {
-            var reader = new FileReader();
-        }
-
-    });
 
     function _createSubscription() {
         var subscription = new Subscription();
@@ -37,27 +62,28 @@
         }
     }
 
-    let link;
-    function UploadImage(e) {
+    function StoreImage(id) {
+        GetImagesIndexedDB();
+        $subscriptions = $subscriptions;
+    }
+
+    function UploadImage(e, id) {
 		const file = e.target.files[0];
 
         if (file) {
-            var blobUrl = URL.createObjectURL(file);
-            console.log(blobUrl);
             showImage = true;
 
             const reader = new FileReader();
 
             reader.addEventListener("load", function () {
-                console.log(e.target.parentNode.childNodes);
                 const imagePreview = e.target.nextElementSibling;
                 imagePreview.setAttribute("src", reader.result);
 
-                link.href = blobUrl;
+                storeImage(id, reader.result);
             });
         
             reader.readAsDataURL(file); 
-
+            
             return;
         } 
 
@@ -126,8 +152,12 @@
 
     .image-preview {
         max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
     }
 </style>
+<button class="btn btn-primary" on:click={() => StoreImage(5)}> CLICK ME</button>
 
 <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" 
 height="7vmin" width="7vmin" fill="currentColor" viewBox="0 0 16 16" on:click={_createSubscription}>
@@ -178,12 +208,12 @@ height="7vmin" width="7vmin" fill="currentColor" viewBox="0 0 16 16" on:click={_
                 <div class="element-section">
                     <p class="inline-block">Image: </p>
                     <div class="mb-3">
-                        <input class="form-control form-control-sm" type="file" accept="image/*" on:change={UploadImage} bind:this={fileInput}>
-                        {#if showImage}
-                            <img class="image-preview" src="" alt="">
-                            <a href="" bind:this={link}>Image Link</a>
+                        <!-- svelte-ignore missing-declaration -->
+                        <input class="form-control form-control-sm" type="file" accept="image/*" on:change={() => UploadImage(event, subscription.id)} bind:this={fileInput}>
+                        {#if (console.log("IMAGE VALUE", images[subscription.id]) || true)}
+                            <img class="image-preview" src={images[subscription.id]} alt="Image Loading">
                         {:else}
-                            <span>Image Preview</span>
+                            <span>No Image Uploaded</span>
                         {/if}
                     </div>
                 </div>
@@ -198,7 +228,10 @@ height="7vmin" width="7vmin" fill="currentColor" viewBox="0 0 16 16" on:click={_
         </div>
         
         {#if (i == subscriptionObjects.length - 1)}
-            <span hidden>{subscriptionObjects[subscriptionObjects.length - 1].scrollIntoView({behavior:'smooth'})}</span>
+            {#if (subscriptionObjects[subscriptionObjects.length - 1].scrollIntoView({behavior:'smooth'}))}
+                <span hidden></span>
+            {/if}
         {/if}
     {/each}
 {/if}
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVoAAAByCAYAAAAS2RmZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGRSURBVHhe7dQxEQAgDAAxnHDHUv8Ki4rfMsRCzn2zAHRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAuQmv3+kB61ta4kYQAAAABJRU5ErkJggg==">

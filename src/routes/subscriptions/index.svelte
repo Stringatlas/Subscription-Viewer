@@ -216,7 +216,9 @@
                 </div>
 
                 {#if (i == subscriptionObjects.length - 1)}
-                    <span hidden>{subscriptionObjects[subscriptionObjects.length - 1].scrollIntoView({behavior:'smooth'})}</span>
+                    {#if (subscriptionObjects[subscriptionObjects.length - 1].scrollIntoView({behavior:'smooth'}))}
+                        <span hidden></span>
+                    {/if}
                 {/if}
             {/each}
         {/if}

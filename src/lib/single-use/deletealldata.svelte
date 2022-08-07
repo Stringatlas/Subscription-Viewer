@@ -1,8 +1,12 @@
 <script>
     import Success from "$lib/components/successmodal.svelte";
-    import { subscriptions} from "$lib/data/localStore.js";
+    import { subscriptions, currentAvailableID} from "$lib/data/localStore.js";
+    import { DeleteDB } from "$lib/data/localIndexedDB.js";
+
     function deleteAllLocalStorage() {
         $subscriptions = []
+        $currentAvailableID = 0;
+        DeleteDB();
         console.log("Deleted all subscription data");
     }
 </script>
