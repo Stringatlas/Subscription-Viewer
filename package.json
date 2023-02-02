@@ -20,7 +20,9 @@
   },
   "type": "module",
   "dependencies": {
-    "chart.js": "^3.7.1",
+    "chart.js": "^3.9.1",
     "sveltestrap": "^5.9.0"
   }
+
+  
 }
