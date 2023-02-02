@@ -10,7 +10,12 @@
 
 </style>
 
-<h1>charts</h1>
+<h1>Analytics</h1>
 
-<Barchart />
-<PieChart />
+<div style="margin-bottom: 5vh;">
+    <Barchart />
+</div>
+
+<div>
+    <PieChart />
+</div>

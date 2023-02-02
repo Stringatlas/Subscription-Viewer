@@ -6,8 +6,9 @@ const config = {
 	preprocess: preprocessor(),
 	kit: {
 		adapter: adapter(),
+		
 
-	}
+	},
 };
 
 export default config;

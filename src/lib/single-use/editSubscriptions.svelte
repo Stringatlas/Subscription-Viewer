@@ -157,7 +157,6 @@
         height: auto;
     }
 </style>
-<button class="btn btn-primary" on:click={() => StoreImage(5)}> CLICK ME</button>
 
 <svg class="add-subscription-btn bi bi-plus" type="button" xmlns="http://www.w3.org/2000/svg" 
 height="7vmin" width="7vmin" fill="currentColor" viewBox="0 0 16 16" on:click={_createSubscription}>
@@ -234,4 +233,3 @@ height="7vmin" width="7vmin" fill="currentColor" viewBox="0 0 16 16" on:click={_
         {/if}
     {/each}
 {/if}
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVoAAAByCAYAAAAS2RmZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGRSURBVHhe7dQxEQAgDAAxnHDHUv8Ki4rfMsRCzn2zAHRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAsQEy1ATLQAMdECxEQLEBMtQEy0ADHRAsRECxATLUBMtAAx0QLERAuQmv3+kB61ta4kYQAAAABJRU5ErkJggg==">
