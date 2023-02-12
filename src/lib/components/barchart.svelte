@@ -18,7 +18,7 @@
     let chart;
     onMount(() => {
         ctx = canvas.getContext('2d');
-        chart = new Chart(ctx, {
+        chart = new Chart(canvas, {
             type: 'bar',
             data: {
                 labels: labels,
@@ -32,6 +32,7 @@
             },
             options: {
                 maintainAspectRatio: false,
+                responsive: true,
                 plugins: {
                     legend: {
                         labels: {
