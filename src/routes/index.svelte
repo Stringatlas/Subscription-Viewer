@@ -27,7 +27,8 @@
     <li>Add your subscriptions in Manage Data in Subscriptions in the Navbar</li>
     <li>View your subscriptions and find out about pricing in View Subscriptions in Subscriptions in the Navbar</li>
     <li>Adjust Settings in Settings</li>
+    <li>View graphs of your subscriptions in the Analytics Page</li>
     <p>*<em>Average Costs</em> find the average cost for each billing period, while <em>Display Separate Costs</em> displays the costs separately by billing period</p>
 </ol>
 
-<p>Currency conversion, image upload, and analytics page coming soon</p>
+<p>Currency conversion, image upload coming soon</p>
