@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import Chart from 'chart.js/auto/auto.js';
+    import Chart from 'chart.js/auto/auto.mjs';
     import { Subscription } from '$lib/subscriptions.js';
 
     import { billingPlansIncrement, billingPlans, subscriptions} from "$lib/data/localStore.js";
@@ -18,7 +18,7 @@
 
     if (browser)
     {        
-        // Chart.defaults.backgroundColor = "#808396";
+        Chart.defaults.backgroundColor = "#808396";''
 
         onMount(() => {
             ctx = canvas.getContext('2d');
@@ -45,9 +45,9 @@
                                 }
                             }
                         },
-                        customCanvasBackgroundColor: {
-                            color: "#808396",
-                        },
+                        // customCanvasBackgroundColor: {
+                        //     color: "#808396",
+                        // },
                         title: {
                             display: true,
                             text: `Price of subscriptions every ${billingPeriod.value}`,
