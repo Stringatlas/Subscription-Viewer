@@ -24,7 +24,7 @@
 
     if (browser)
     {
-        Chart.defaults.backgroundColor = "#808396";
+        // Chart.defaults.backgroundColor = "#808396";
 
         onMount(() => {
             ctx = canvas.getContext('2d');
@@ -51,6 +51,9 @@
                                     size: 16
                                 }
                             }
+                        },
+                        customCanvasBackgroundColor: {
+                            color: "#808396",
                         },
                         title: {
                             display: true,
