@@ -16,15 +16,15 @@
 
     let billingPeriod = {value: $billingPlans[0]};
 
-    Chart.defaults.backgroundColor = "#808396"
+    
 
-    let colors = []
+    let colors = [];
 
     let chart;
 
     if (browser)
     {
- 
+        Chart.defaults.backgroundColor = "#808396";
 
         onMount(() => {
             ctx = canvas.getContext('2d');
