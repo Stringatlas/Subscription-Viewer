@@ -5,7 +5,8 @@
 
     import { billingPlansIncrement, billingPlans, subscriptions} from "$lib/data/localStore.js";
     import DropDown from "$lib/components/dropdown.svelte";
-
+    import { browser } from "$app/env";
+    
     let data = [20, 100, 50, 12, 20, 130, 45];
     let labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     let ctx;
@@ -16,42 +17,46 @@
     Chart.defaults.backgroundColor = "#808396"
 
     let chart;
-    onMount(() => {
-        ctx = canvas.getContext('2d');
-        chart = new Chart(canvas, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: `Price`,
-                        data: data,
-                        borderRadius: 10,
-                    }
-                ]
-            },
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                plugins: {
-                    legend: {
-                        labels: {
+
+    if (browser)
+    {
+        onMount(() => {
+            ctx = canvas.getContext('2d');
+            chart = new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: `Price`,
+                            data: data,
+                            borderRadius: 10,
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: 24
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: `Price of subscriptions every ${billingPeriod.value}`,
                             font: {
                                 size: 24
                             }
                         }
-                    },
-                    title: {
-                        display: true,
-                        text: `Price of subscriptions every ${billingPeriod.value}`,
-                        font: {
-                            size: 24
-                        }
                     }
                 }
-            }
+            });
         });
-    });
+    }
 
     function onBillingChange() {
         chart.options.plugins.title.text = `Price of subscriptions every ${billingPeriod.value}`;

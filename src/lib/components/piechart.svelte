@@ -5,11 +5,14 @@
 
     import { billingPlansIncrement, billingPlans, subscriptions} from "$lib/data/localStore.js";
     import DropDown from "$lib/components/dropdown.svelte";
+    import { browser } from "$app/env";
+
+    let canvas;
 
     let data = [20, 100, 50, 12, 20, 130, 45];
     let labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     let ctx;
-    let canvas;
+
 
     let billingPeriod = {value: $billingPlans[0]};
 
@@ -18,43 +21,49 @@
     let colors = []
 
     let chart;
-    onMount(() => {
-        ctx = canvas.getContext('2d');
-        chart = new Chart(canvas, {
-            type: 'pie',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: `Price`,
-                        data: data,
-                        borderRadius: 0,
-                        backgroundColor: colors,
-                    }
-                ]
-            },
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                plugins: {
-                    legend: {
-                        labels: {
-                            font: {
-                                size: 16
-                            }
+
+    if (browser)
+    {
+ 
+
+        onMount(() => {
+            ctx = canvas.getContext('2d');
+            chart = new Chart(canvas, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: `Price`,
+                            data: data,
+                            borderRadius: 0,
+                            backgroundColor: colors,
                         }
-                    },
-                    title: {
-                        display: true,
-                        text: `Price of subscriptions every ${billingPeriod.value}`,
-                        font: {
-                            size: 24
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: 16
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: `Price of subscriptions every ${billingPeriod.value}`,
+                            font: {
+                                size: 24
+                            }
                         }
                     }
                 }
-            }
+            });
         });
-    });
+    }
 
     function generateRandomColor() {
         return "#" + Math.floor(Math.random() * 0xffffff).toString(16)
