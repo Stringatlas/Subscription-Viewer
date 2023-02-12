@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import Chart from 'chart.js/auto/auto';
+    import Chart from 'chart.js/auto/auto.js';
     import { Subscription } from '$lib/subscriptions.js';
 
     import { billingPlansIncrement, billingPlans, subscriptions} from "$lib/data/localStore.js";
